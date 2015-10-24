@@ -61,6 +61,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return total
     }
     
+    @IBAction func cleanBag(sender: AnyObject) {
+        
+        
+//        for p in allProducts{
+//            p.Quantity = 1
+//        }
+        
+        bagItems.removeAll(keepCapacity: false)
+        totalLbl.text = "0.0";
+        
+        //trocoLbl.text = "";
+        //activeTrocoTag = 0
+        //resetTrocoButtons()
+        
+        
+        
+        bagTV.reloadData()
+    }
+    
     
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -84,6 +103,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+
+            bagItems.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            showTotal()
+
+        }
     }
     
     
@@ -132,7 +165,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let index = bagItems.indexOf({$0.productId == p.productId}){
             bagItems[index].quantity++
         } else {
-            bagItems.append(p)
+            bagItems.append(Product(productId: p.productId, name: p.name, price: p.price))
         }
 
         
