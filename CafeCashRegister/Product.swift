@@ -10,11 +10,24 @@ import Foundation
 
 class Product {
 
+    
+    enum Category: Int{
+    
+        case TODOS = 0,
+        CAFE,
+        BEBIDAS,
+        ALCOOL,
+        COMER,
+        TABACO
+    }
+    
+    
     private var _productId:Int!
     private var _name:String!
     private var _price:Double!
     private var _image:String!
     private var _quantity:Int!
+    private var _category:Category!
     
     var productId: Int {
         return _productId
@@ -63,11 +76,15 @@ class Product {
         set{ _quantity = newValue }
     }
     
+    var category: Category {
+        return _category
+    }
 
-    init(productId: Int ,name: String, price:Double ) {
+    init(productId: Int ,name: String, price:Double, category:Category ) {
         self._name = name
         self._productId = productId
         self._price = price
+        self._category = category
     }
     
     

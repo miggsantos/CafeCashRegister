@@ -37,13 +37,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         calculatorView.hidden = true
         productsCV.hidden = false
         
-        allProducts.append(Product.init( productId: 1,name: "café", price: 0.55 ))
-        allProducts.append(Product.init( productId: 2, name: "descafeinado", price: 0.45))
-        allProducts.append(Product.init( productId: 3, name: "carioca", price: 0.45))
-        allProducts.append(Product.init( productId: 4, name: "cerveja", price: 0.75))
-        allProducts.append(Product.init( productId: 5,name: "vinho", price: 0.35 ))
+        allProducts.append(Product.init( productId: 1,name: "café", price: 0.55, category: Product.Category.CAFE ))
+        allProducts.append(Product.init( productId: 2, name: "descafeinado", price: 0.45, category: Product.Category.CAFE))
+        allProducts.append(Product.init( productId: 3, name: "carioca", price: 0.45, category: Product.Category.CAFE))
+        allProducts.append(Product.init( productId: 4, name: "cerveja", price: 0.75, category: Product.Category.ALCOOL))
+        allProducts.append(Product.init( productId: 5,name: "vinho", price: 0.35, category: Product.Category.ALCOOL ))
+        
+        filteredProducts = allProducts
         
     }
+    
+    
+    @IBAction func changeCategory(sender: UIButton) {
+        
+        print(sender.tag)
+        
+        
+        filteredProducts.removeAll(keepCapacity: false)
+        
+        filteredProducts = allProducts.filter({$0.category.rawValue == sender.tag })
+        
+        
+        productsCV.reloadData()
+        
+        
+    }
+    
+    
     
     @IBAction func calcNumberPressed(sender: UIButton) {
         
@@ -72,7 +92,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let calcValue = Double(runningNumber)  {
         
-            bagItems.append(Product.init( productId: 0,name: "valor manual", price: calcValue ))
+            bagItems.append(Product.init( productId: 0,name: "valor manual", price: calcValue, category: Product.Category.TODOS ))
             
             bagTV.reloadData()
             showTotal()
@@ -201,7 +221,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allProducts.count
+        return filteredProducts.count
     }
     
     
@@ -213,7 +233,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let p:Product!
             
-            p = allProducts[indexPath.row]
+            p = filteredProducts[indexPath.row]
             
             cell.configureCell(p)
             
@@ -236,12 +256,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let p:Product!
         
-        p = allProducts[indexPath.row]
+        p = filteredProducts[indexPath.row]
         
         if let index = bagItems.indexOf({$0.productId == p.productId}){
             bagItems[index].quantity++
         } else {
-            bagItems.append(Product(productId: p.productId, name: p.name, price: p.price))
+            bagItems.append(Product(productId: p.productId, name: p.name, price: p.price, category: p.category ))
         }
 
         
