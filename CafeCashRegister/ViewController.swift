@@ -14,6 +14,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var filteredProducts = [Product]()
     var bagItems = [Product]()
     
+    var calculatorActive:Bool = false
+    
     
     @IBOutlet weak var productsCV: UICollectionView!
     @IBOutlet weak var bagTV: UITableView!
@@ -29,11 +31,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         bagTV.delegate = self
         bagTV.dataSource = self
         
+        
         allProducts.append(Product.init( productId: 1,name: "café", price: 0.55 ))
         allProducts.append(Product.init( productId: 2, name: "descafeinado", price: 0.45))
         allProducts.append(Product.init( productId: 3, name: "carioca", price: 0.45))
         allProducts.append(Product.init( productId: 4, name: "cerveja", price: 0.75))
         allProducts.append(Product.init( productId: 5,name: "vinho", price: 0.35 ))
+        
+    }
+    
+    
+    @IBAction func calculatorBtnPressed(sender: AnyObject) {
+        
+        if calculatorActive {
+            productsCV.hidden = true
+            //productsCV.alpha = 1.0
+            calculatorActive = false
+            
+        }
+        else {
+            productsCV.hidden = false
+            //productsCV.alpha = 0.0
+            calculatorActive = true
+            
+        
+        }
         
     }
     
@@ -81,7 +103,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-
+    /// ***** TableView *****
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -120,9 +143,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    // ***** CollectionView *****
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allProducts.count
