@@ -14,13 +14,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var filteredProducts = [Product]()
     var bagItems = [Product]()
     
-    var calculatorActive:Bool = false
-    
+    var runningNumber = ""
+    let euroSymbol = " € "
     
     @IBOutlet weak var productsCV: UICollectionView!
     @IBOutlet weak var bagTV: UITableView!
+    @IBOutlet weak var calculatorView: UIView!
     
     @IBOutlet weak var totalLbl: UILabel!
+    
+    @IBOutlet weak var calcDisplay: UILabel!
     
     
     override func viewDidLoad() {
@@ -31,6 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         bagTV.delegate = self
         bagTV.dataSource = self
         
+        calculatorView.hidden = true
+        productsCV.hidden = false
         
         allProducts.append(Product.init( productId: 1,name: "café", price: 0.55 ))
         allProducts.append(Product.init( productId: 2, name: "descafeinado", price: 0.45))
@@ -40,19 +45,64 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    @IBAction func calcNumberPressed(sender: UIButton) {
+        
+        if(sender.tag == -1){
+            
+            if !runningNumber.containsString(".") {
+                runningNumber += "."
+            }
+            
+            
+        } else {
+            runningNumber += "\(sender.tag)"
+        }
+        
+        calcDisplay.text = runningNumber + euroSymbol
+        
+    }
+    
+    @IBAction func backspacePressed(sender: AnyObject) {
+        
+        runningNumber = String(runningNumber.characters.dropLast())
+        calcDisplay.text = runningNumber + euroSymbol
+    }
+    
+    @IBAction func addPressed(sender: AnyObject) {
+        
+        if let calcValue = Double(runningNumber)  {
+        
+            bagItems.append(Product.init( productId: 0,name: "valor manual", price: calcValue ))
+            
+            bagTV.reloadData()
+            showTotal()
+            
+            runningNumber = ""
+            calcDisplay.text = euroSymbol
+            
+            
+        } else {
+            print("not double")
+        }
+        
+    }
+  
     
     @IBAction func calculatorBtnPressed(sender: AnyObject) {
         
-        if calculatorActive {
+        if calculatorView.hidden {
+            
             productsCV.hidden = true
-            //productsCV.alpha = 1.0
-            calculatorActive = false
+            calculatorView.hidden = false
+
+
             
         }
         else {
+            
+            calculatorView.hidden = true
             productsCV.hidden = false
-            //productsCV.alpha = 0.0
-            calculatorActive = true
+
             
         
         }
