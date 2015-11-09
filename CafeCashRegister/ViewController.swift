@@ -55,10 +55,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         filteredProducts.removeAll(keepCapacity: false)
         
-        filteredProducts = allProducts.filter({$0.category.rawValue == sender.tag })
+        if(sender.tag > 0){
         
+            filteredProducts = allProducts.filter({$0.category.rawValue == sender.tag })
+        }
+        else {
+        
+            filteredProducts = allProducts
+        }
         
         productsCV.reloadData()
+        
+        calculatorView.hidden = true
+        productsCV.hidden = false
         
         
     }
@@ -111,20 +120,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func calculatorBtnPressed(sender: AnyObject) {
         
         if calculatorView.hidden {
-            
             productsCV.hidden = true
             calculatorView.hidden = false
-
-
-            
         }
         else {
-            
             calculatorView.hidden = true
             productsCV.hidden = false
-
-            
-        
         }
         
     }
