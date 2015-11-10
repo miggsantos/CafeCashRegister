@@ -17,6 +17,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var runningNumber = ""
     let euroSymbol = " € "
     
+    let activeBillColor = UIColor(red: 36/255, green: 131/255, blue: 192/255, alpha: 255)
+    let notActiveBillColor = UIColor(red: 46/255, green: 174/255, blue: 255/255, alpha: 255)
+    var activeBillTag = 0
+    
+    
     @IBOutlet weak var productsCV: UICollectionView!
     @IBOutlet weak var bagTV: UITableView!
     @IBOutlet weak var calculatorView: UIView!
@@ -25,6 +30,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var calcDisplay: UILabel!
     
+    
+    @IBOutlet weak var bill5: UIButton!
+    @IBOutlet weak var bill10: UIButton!
+    @IBOutlet weak var bill20: UIButton!
+    @IBOutlet weak var bill50: UIButton!
+    @IBOutlet weak var changeLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +55,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         allProducts.append(Product.init( productId: 5,name: "vinho", price: 0.35, category: Product.Category.ALCOOL ))
         
         filteredProducts = allProducts
+        
+        changeLbl.text = ""
         
     }
     
@@ -72,7 +85,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
+    // *************************
+    // ****** Calculator *******
+    // *************************
     
     @IBAction func calcNumberPressed(sender: UIButton) {
         
@@ -130,6 +145,82 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    // *****************************
+    // ********* CHANGE ************
+    // *****************************
+    
+    func resetBillButtons(){
+        
+        bill5.backgroundColor = notActiveBillColor
+        bill10.backgroundColor = notActiveBillColor
+        bill20.backgroundColor = notActiveBillColor
+        bill50.backgroundColor = notActiveBillColor
+        
+    }
+    
+    
+    @IBAction func getChange(sender: UIButton) {
+        
+        let total:Double = calculateTotal()
+        
+        if(total <= 0.0){ return }
+        
+        
+        activeBillTag = sender.tag
+        
+        sender.backgroundColor = activeBillColor
+        
+        
+        showTroco( calculateChange(total) )
+        
+        
+    }
+    
+    
+    func calculateChange(total:Double ) -> Double{
+        
+        resetBillButtons()
+        
+        var troco:Double = 0.0
+        
+        switch(activeBillTag){
+            
+        case 1:
+            
+            troco = 5.0 - total
+            bill5.backgroundColor = activeBillColor
+            break
+        case 2:
+            troco = 10.0 - total
+            bill10.backgroundColor = activeBillColor
+            break
+        case 3:
+            troco = 20.0 - total
+            bill20.backgroundColor = activeBillColor
+            break
+        case 4:
+            troco = 50.0 - total
+            bill50.backgroundColor = activeBillColor
+            break
+            
+        default:
+            break
+            
+        }
+        
+        return troco
+    }
+    
+    func showTroco(troco:Double ){
+        
+        if (troco < 0.0) {
+            changeLbl.text = "Erro - Sem troco!"
+        }
+        else {
+            changeLbl.text = troco.description + " €"
+        }
+    }
+    
     
     func showTotal(){
         
@@ -137,12 +228,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         totalLbl.text = "Total: " + total.description + " €"
         
-//        refreshTableView()
-//        
-//        
-//        if(activeTrocoTag > 0){
-//            showTroco( calcuclate_Troco(total) )
-//        }
+        if(activeBillTag > 0){
+            showTroco( calculateChange(total) )
+        }
         
     }
     
@@ -156,20 +244,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func cleanBag(sender: AnyObject) {
         
-        
-//        for p in allProducts{
-//            p.Quantity = 1
-//        }
-        
         bagItems.removeAll(keepCapacity: false)
         totalLbl.text = "0.0";
         
-        //trocoLbl.text = "";
-        //activeTrocoTag = 0
-        //resetTrocoButtons()
         
-        
-        
+        changeLbl.text = "";
+        activeBillTag = 0
+        resetBillButtons()
+
         bagTV.reloadData()
     }
     

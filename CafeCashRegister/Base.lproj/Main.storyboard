@@ -375,6 +375,59 @@
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sip-D7-2c3">
                                                 <rect key="frame" x="0.0" y="503" width="300" height="150"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LE3-hb-xui">
+                                                        <rect key="frame" x="13" y="15" width="75" height="50"/>
+                                                        <animations/>
+                                                        <color key="backgroundColor" red="0.18039215689999999" green="0.52941176469999995" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="5 €">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5dG-FF-1Up"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-fz-m7M">
+                                                        <rect key="frame" x="105" y="15" width="75" height="50"/>
+                                                        <animations/>
+                                                        <color key="backgroundColor" red="0.18039215689999999" green="0.52941176469999995" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="10 €">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B0i-ZN-VS1"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMP-rM-i3u">
+                                                        <rect key="frame" x="13" y="81" width="75" height="50"/>
+                                                        <animations/>
+                                                        <color key="backgroundColor" red="0.18039215689999999" green="0.52941176469999995" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="20 €">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DT9-aF-eg9"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50.50 €" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erx-eE-pWe">
+                                                        <rect key="frame" x="188" y="15" width="104" height="116"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esU-wr-Ci3">
+                                                        <rect key="frame" x="105" y="81" width="75" height="50"/>
+                                                        <animations/>
+                                                        <color key="backgroundColor" red="0.18039215689999999" green="0.52941176469999995" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="50 €">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q43-Ed-dlU"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -543,8 +596,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="bagTV" destination="LV5-O6-yCA" id="B12-3C-hej"/>
+                        <outlet property="bill10" destination="bEX-fz-m7M" id="WLc-ng-8Ss"/>
+                        <outlet property="bill20" destination="KMP-rM-i3u" id="tKh-af-UJY"/>
+                        <outlet property="bill5" destination="LE3-hb-xui" id="jJP-Sh-nfb"/>
+                        <outlet property="bill50" destination="esU-wr-Ci3" id="Ufp-Rm-hXk"/>
                         <outlet property="calcDisplay" destination="sJ2-rU-91k" id="3cs-aQ-PLV"/>
                         <outlet property="calculatorView" destination="GdP-5N-LQY" id="k6j-cs-WUV"/>
+                        <outlet property="changeLbl" destination="Erx-eE-pWe" id="eZ8-GQ-mzc"/>
                         <outlet property="productsCV" destination="fTi-VV-Jbw" id="Lix-4T-x4i"/>
                         <outlet property="totalLbl" destination="588-lH-VZU" id="QvL-z0-9yz"/>
                     </connections>
