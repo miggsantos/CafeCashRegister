@@ -76,6 +76,16 @@ class Product {
         set{ _quantity = newValue }
     }
     
+    var image: String {
+        get{
+            if _image == nil {
+                return "cafe.png"
+            }
+            return _image
+        }
+        set{ _image = newValue }
+    }
+    
     var category: Category {
         return _category
     }
@@ -88,7 +98,13 @@ class Product {
     }
     
     
-    
+    init(productId: Int ,name: String, price:Double, category:Category, image: String ) {
+        self._name = name
+        self._productId = productId
+        self._price = price
+        self._category = category
+        self._image = image
+    }
     
     
     

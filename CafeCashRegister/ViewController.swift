@@ -101,7 +101,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let calcValue = Double(runningNumber)  {
         
-            bagItems.append(Product.init( productId: 0,name: "valor manual", price: calcValue, category: Product.Category.TODOS ))
+            bagItems.append(Product.init( productId: 0,name: "valor manual", price: calcValue, category: Product.Category.TODOS, image: "euro.png" ))
             
             bagTV.reloadData()
             showTotal()
@@ -173,8 +173,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         bagTV.reloadData()
     }
     
-    
-    /// ***** TableView *****
+    // **************************
+    // ******* TableView ********
+    // **************************
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -213,8 +214,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    
+    // **************************
     // ***** CollectionView *****
+    // **************************
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1

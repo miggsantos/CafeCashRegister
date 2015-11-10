@@ -35,7 +35,7 @@ class BagItemCell: UITableViewCell {
     func configureCell(product: Product) {
         self.name.text = product.nameAndQty
         self.price.text = product.priceStr
-        self.thumbImg.image = UIImage(named: "cafe.png")
+        self.thumbImg.image = UIImage(named: product.image)
         self.thumbImg.layer.cornerRadius = 5.0
         
     }
