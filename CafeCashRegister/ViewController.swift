@@ -57,6 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         filteredProducts = allProducts
         
         changeLbl.text = ""
+        resetBillButtons()
         
     }
     
@@ -65,7 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         print(sender.tag)
         
-        
+
         filteredProducts.removeAll(keepCapacity: false)
         
         if(sender.tag > 0){
@@ -77,12 +78,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             filteredProducts = allProducts
         }
         
-        productsCV.reloadData()
+
+        //productsCV.reloadData()
+
+  
+        self.calculatorView.hidden = true
+        self.productsCV.hidden = false
         
-        calculatorView.hidden = true
-        productsCV.hidden = false
         
         
+        
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            
+            self.productsCV.reloadData()
+            
+        
+        })
+        
+
+
+
     }
     
     // *************************
@@ -96,7 +113,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if !runningNumber.containsString(".") {
                 runningNumber += "."
             }
-            
             
         } else {
             runningNumber += "\(sender.tag)"
@@ -122,21 +138,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             showTotal()
             
             runningNumber = ""
-            calcDisplay.text = euroSymbol
-            
+            calcDisplay.text = euroSymbol   
             
         } else {
             print("not double")
         }
-        
     }
   
     
     @IBAction func calculatorBtnPressed(sender: AnyObject) {
-        
+
         if calculatorView.hidden {
             productsCV.hidden = true
             calculatorView.hidden = false
+            
         }
         else {
             calculatorView.hidden = true
@@ -165,15 +180,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if(total <= 0.0){ return }
         
-        
         activeBillTag = sender.tag
         
         sender.backgroundColor = activeBillColor
         
-        
-        showTroco( calculateChange(total) )
-        
-        
+        showChange( calculateChange(total) )
     }
     
     
@@ -181,25 +192,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         resetBillButtons()
         
-        var troco:Double = 0.0
+        var change:Double = 0.0
         
         switch(activeBillTag){
             
         case 1:
             
-            troco = 5.0 - total
+            change = 5.0 - total
             bill5.backgroundColor = activeBillColor
             break
         case 2:
-            troco = 10.0 - total
+            change = 10.0 - total
             bill10.backgroundColor = activeBillColor
             break
         case 3:
-            troco = 20.0 - total
+            change = 20.0 - total
             bill20.backgroundColor = activeBillColor
             break
         case 4:
-            troco = 50.0 - total
+            change = 50.0 - total
             bill50.backgroundColor = activeBillColor
             break
             
@@ -208,16 +219,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         
-        return troco
+        return change
     }
     
-    func showTroco(troco:Double ){
+    func showChange(change:Double ){
         
-        if (troco < 0.0) {
+        if (change < 0.0) {
             changeLbl.text = "Erro - Sem troco!"
         }
         else {
-            changeLbl.text = troco.description + " €"
+            changeLbl.text = change.description + " €"
         }
     }
     
@@ -229,7 +240,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         totalLbl.text = "Total: " + total.description + " €"
         
         if(activeBillTag > 0){
-            showTroco( calculateChange(total) )
+            showChange( calculateChange(total) )
         }
         
     }
@@ -301,6 +312,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // **************************
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        
+        self.productsCV.collectionViewLayout.invalidateLayout()
+        
         return 1
     }
     
@@ -311,13 +325,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-   
-        
+
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductCell", forIndexPath: indexPath) as? ProductCell {
             
             let p:Product!
-            
+            print("row= \(indexPath.row)")
             p = filteredProducts[indexPath.row]
             
             cell.configureCell(p)
@@ -325,15 +337,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return cell
         
         } else {
-        
             return UICollectionViewCell()
         }
-        
-        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
         return CGSizeMake(105, 105)
     }
     
@@ -353,10 +361,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         bagTV.reloadData()
         showTotal()
     }
-
-    
-    
-    
 
 }
 

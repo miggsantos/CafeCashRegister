@@ -13,9 +13,9 @@
 		934CB45A1BD2BF1F001B735B /* CafeCashRegister.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 934CB4581BD2BF1F001B735B /* CafeCashRegister.xcdatamodeld */; };
 		934CB45C1BD2BF1F001B735B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934CB45B1BD2BF1F001B735B /* Assets.xcassets */; };
 		934CB45F1BD2BF1F001B735B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 934CB45D1BD2BF1F001B735B /* LaunchScreen.storyboard */; };
-		934CB46A1BD5B748001B735B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB4691BD5B748001B735B /* Product.swift */; settings = {ASSET_TAGS = (); }; };
-		934CB46C1BD5BD4B001B735B /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB46B1BD5BD4B001B735B /* ProductCell.swift */; settings = {ASSET_TAGS = (); }; };
-		93D4BF3E1BD854DB00C0F769 /* BagItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4BF3D1BD854DB00C0F769 /* BagItemCell.swift */; settings = {ASSET_TAGS = (); }; };
+		934CB46A1BD5B748001B735B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB4691BD5B748001B735B /* Product.swift */; };
+		934CB46C1BD5BD4B001B735B /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB46B1BD5BD4B001B735B /* ProductCell.swift */; };
+		93D4BF3E1BD854DB00C0F769 /* BagItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4BF3D1BD854DB00C0F769 /* BagItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
