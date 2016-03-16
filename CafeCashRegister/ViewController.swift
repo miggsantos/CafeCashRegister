@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var bagItems = [Product]()
     
     var runningNumber = ""
-    let euroSymbol = " € "
+
     
     let activeBillColor = UIColor(red: 36/255, green: 131/255, blue: 192/255, alpha: 255)
     let notActiveBillColor = UIColor(red: 46/255, green: 174/255, blue: 255/255, alpha: 255)
@@ -53,6 +53,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         allProducts.append(Product.init( productId: 3, name: "carioca", price: 0.45, category: Product.Category.CAFE))
         allProducts.append(Product.init( productId: 4, name: "cerveja", price: 0.75, category: Product.Category.ALCOOL))
         allProducts.append(Product.init( productId: 5,name: "vinho", price: 0.35, category: Product.Category.ALCOOL ))
+        allProducts.append(Product.init( productId: 6,name: "chá", price: 0.55, category: Product.Category.CAFE ))
+        allProducts.append(Product.init( productId: 7, name: "pastilhas", price: 0.45, category: Product.Category.COMER))
+        allProducts.append(Product.init( productId: 8, name: "batatas fritas 0.80", price: 0.45, category: Product.Category.COMER))
+        allProducts.append(Product.init( productId: 9, name: "coca-cola", price: 0.75, category: Product.Category.BEBIDAS))
+        allProducts.append(Product.init( productId: 10,name: "sumol", price: 0.35, category: Product.Category.BEBIDAS ))
         
         filteredProducts = allProducts
         
@@ -118,14 +123,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             runningNumber += "\(sender.tag)"
         }
         
-        calcDisplay.text = runningNumber + euroSymbol
+        calcDisplay.text = "\(runningNumber) \(EURO) "
         
     }
     
     @IBAction func backspacePressed(sender: AnyObject) {
         
         runningNumber = String(runningNumber.characters.dropLast())
-        calcDisplay.text = runningNumber + euroSymbol
+        calcDisplay.text = "\(runningNumber) \(EURO) "
     }
     
     @IBAction func addPressed(sender: AnyObject) {
@@ -138,7 +143,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             showTotal()
             
             runningNumber = ""
-            calcDisplay.text = euroSymbol   
+            calcDisplay.text = "\(EURO) "
             
         } else {
             print("not double")
@@ -228,7 +233,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             changeLbl.text = "Erro - Sem troco!"
         }
         else {
-            changeLbl.text = change.description + " €"
+            changeLbl.text = change.description + " \(EURO)"
         }
     }
     
@@ -237,7 +242,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let total:Double = calculateTotal()
         
-        totalLbl.text = "Total: " + total.description + " €"
+        totalLbl.text = "Total: " + total.description + " \(EURO)"
         
         if(activeBillTag > 0){
             showChange( calculateChange(total) )
