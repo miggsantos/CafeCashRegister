@@ -35,7 +35,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJ9-mb-fW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029" y="-88"/>
+            <point key="canvasLocation" x="-777" y="626"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -267,200 +267,18 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-rP-Wdv">
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eb-aN-OHQ">
                                         <rect key="frame" x="684" y="0.0" width="300" height="653"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJD-6x-xFZ" customClass="MaterialView" customModule="CafeCashRegister" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="588-lH-VZU">
-                                                        <rect key="frame" x="131" y="11" width="38" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="588-lH-VZU" secondAttribute="trailing" constant="8" id="7Ko-kd-c29"/>
-                                                    <constraint firstAttribute="height" constant="44" id="AQQ-AP-8mu"/>
-                                                    <constraint firstItem="588-lH-VZU" firstAttribute="centerY" secondItem="gJD-6x-xFZ" secondAttribute="centerY" id="Eos-zJ-IPf"/>
-                                                    <constraint firstItem="588-lH-VZU" firstAttribute="leading" secondItem="gJD-6x-xFZ" secondAttribute="leading" constant="8" id="IfR-H8-Wcg"/>
-                                                    <constraint firstAttribute="height" constant="44" id="WQ2-vy-JQJ"/>
-                                                    <constraint firstItem="588-lH-VZU" firstAttribute="centerX" secondItem="gJD-6x-xFZ" secondAttribute="centerX" id="c1t-vG-Qv6"/>
-                                                    <constraint firstAttribute="width" constant="300" id="exn-K9-vuw"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="WQ2-vy-JQJ"/>
-                                                        <exclude reference="exn-K9-vuw"/>
-                                                        <exclude reference="7Ko-kd-c29"/>
-                                                        <exclude reference="IfR-H8-Wcg"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LV5-O6-yCA">
-                                                <rect key="frame" x="0.0" y="52" width="300" height="395"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="kPh-d6-9h2"/>
-                                                </constraints>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BagItemCell" rowHeight="70" id="Je1-CJ-Sd8" customClass="BagItemCell" customModule="CafeCashRegister" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="300" height="70"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Je1-CJ-Sd8" id="GF7-Iw-gVs">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="69.5"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe" translatesAutoresizingMaskIntoConstraints="NO" id="3Nd-ge-ukI">
-                                                                    <rect key="frame" x="8" y="10" width="50" height="50"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="50" id="0EZ-lQ-fyy"/>
-                                                                        <constraint firstAttribute="height" constant="50" id="SP1-zS-85b"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndE-X9-7Kt">
-                                                                    <rect key="frame" x="66" y="10" width="168" height="50"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="gds-1L-hj7"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.99 €" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4q-j8-dgd">
-                                                                    <rect key="frame" x="242" y="10" width="50" height="50"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="i79-EN-kgU"/>
-                                                                        <constraint firstAttribute="width" constant="50" id="uvW-EL-DoR"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="3Nd-ge-ukI" firstAttribute="centerY" secondItem="GF7-Iw-gVs" secondAttribute="centerY" id="8SR-WV-xlZ"/>
-                                                                <constraint firstItem="ndE-X9-7Kt" firstAttribute="leading" secondItem="3Nd-ge-ukI" secondAttribute="trailing" constant="8" id="8u9-K4-9cQ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="d4q-j8-dgd" secondAttribute="trailing" constant="8" id="Ndd-bi-cuF"/>
-                                                                <constraint firstItem="d4q-j8-dgd" firstAttribute="leading" secondItem="ndE-X9-7Kt" secondAttribute="trailing" constant="8" id="XWF-dg-E42"/>
-                                                                <constraint firstItem="ndE-X9-7Kt" firstAttribute="centerY" secondItem="GF7-Iw-gVs" secondAttribute="centerY" id="c8Q-Oq-U89"/>
-                                                                <constraint firstItem="3Nd-ge-ukI" firstAttribute="leading" secondItem="GF7-Iw-gVs" secondAttribute="leading" constant="8" id="hdq-pZ-7Jz"/>
-                                                                <constraint firstItem="d4q-j8-dgd" firstAttribute="centerY" secondItem="GF7-Iw-gVs" secondAttribute="centerY" id="mOZ-oP-KxG"/>
-                                                            </constraints>
-                                                        </tableViewCellContentView>
-                                                        <color key="backgroundColor" red="1" green="0.40695837769999998" blue="0.033196996600000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <outlet property="name" destination="ndE-X9-7Kt" id="UN3-aC-bS2"/>
-                                                            <outlet property="price" destination="d4q-j8-dgd" id="V2w-yu-3MA"/>
-                                                            <outlet property="thumbImg" destination="3Nd-ge-ukI" id="sje-vh-CSN"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                </prototypes>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="kPh-d6-9h2"/>
-                                                    </mask>
-                                                </variation>
-                                            </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3v-aw-ptd" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="455" width="300" height="40"/>
-                                                <color key="backgroundColor" red="0.14117647058823529" green="0.50980392156862742" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="MzT-gV-oC9"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <state key="normal" title="Limpar">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cleanBag:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NcU-bf-ghJ"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sip-D7-2c3" customClass="MaterialView" customModule="CafeCashRegister" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="503" width="300" height="150"/>
-                                                <subviews>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LE3-hb-xui" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
-                                                        <rect key="frame" x="13" y="15" width="75" height="50"/>
-                                                        <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="5 €">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5dG-FF-1Up"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-fz-m7M" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
-                                                        <rect key="frame" x="105" y="15" width="75" height="50"/>
-                                                        <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="10 €">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B0i-ZN-VS1"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMP-rM-i3u" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
-                                                        <rect key="frame" x="13" y="81" width="75" height="50"/>
-                                                        <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="20 €">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DT9-aF-eg9"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50.50 €" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erx-eE-pWe">
-                                                        <rect key="frame" x="188" y="15" width="104" height="116"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esU-wr-Ci3" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
-                                                        <rect key="frame" x="105" y="81" width="75" height="50"/>
-                                                        <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="50 €">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="getChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q43-Ed-dlU"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="7az-ek-GJw"/>
-                                                    <constraint firstAttribute="height" constant="150" id="XdJ-GW-C0A"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="7az-ek-GJw"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
-                                        </subviews>
                                         <constraints>
-                                            <constraint firstItem="LV5-O6-yCA" firstAttribute="width" secondItem="gJD-6x-xFZ" secondAttribute="width" id="6hG-a4-t8I"/>
-                                            <constraint firstItem="gJD-6x-xFZ" firstAttribute="width" secondItem="oX0-rP-Wdv" secondAttribute="width" id="8s1-Hv-Qx1"/>
-                                            <constraint firstItem="gJD-6x-xFZ" firstAttribute="leading" secondItem="oX0-rP-Wdv" secondAttribute="leading" id="DYy-cl-LPr"/>
-                                            <constraint firstAttribute="width" constant="300" id="Ixg-WW-iLI"/>
-                                            <constraint firstItem="u3v-aw-ptd" firstAttribute="width" secondItem="oX0-rP-Wdv" secondAttribute="width" id="dON-Ca-bUm"/>
-                                            <constraint firstItem="Sip-D7-2c3" firstAttribute="width" secondItem="oX0-rP-Wdv" secondAttribute="width" id="n1x-ct-QUt"/>
-                                            <constraint firstItem="LV5-O6-yCA" firstAttribute="width" secondItem="oX0-rP-Wdv" secondAttribute="width" id="p0e-G4-1Bh"/>
-                                            <constraint firstAttribute="trailing" secondItem="gJD-6x-xFZ" secondAttribute="trailing" id="qyH-kE-45T"/>
-                                            <constraint firstItem="Sip-D7-2c3" firstAttribute="width" secondItem="gJD-6x-xFZ" secondAttribute="width" id="sTk-Xq-fA1"/>
+                                            <constraint firstAttribute="height" constant="653" id="VKM-ZW-eBJ"/>
+                                            <constraint firstAttribute="width" constant="300" id="VV9-aa-b4B"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="6hG-a4-t8I"/>
-                                                <exclude reference="sTk-Xq-fA1"/>
-                                            </mask>
-                                        </variation>
-                                    </stackView>
+                                        <connections>
+                                            <segue destination="jZr-oG-JFn" kind="embed" id="CDK-3O-Dmk"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="oX0-rP-Wdv" firstAttribute="height" secondItem="ZiL-nF-oau" secondAttribute="height" id="9o0-wf-4iz"/>
                                     <constraint firstItem="fTi-VV-Jbw" firstAttribute="height" secondItem="ZiL-nF-oau" secondAttribute="height" id="OSc-6H-nm8"/>
                                     <constraint firstAttribute="height" constant="660" id="uLd-sr-l9p"/>
                                 </constraints>
@@ -468,7 +286,6 @@
                                     <mask key="constraints">
                                         <exclude reference="uLd-sr-l9p"/>
                                         <exclude reference="OSc-6H-nm8"/>
-                                        <exclude reference="9o0-wf-4iz"/>
                                     </mask>
                                 </variation>
                             </stackView>
@@ -604,21 +421,239 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="bagTV" destination="LV5-O6-yCA" id="B12-3C-hej"/>
-                        <outlet property="bill10" destination="bEX-fz-m7M" id="WLc-ng-8Ss"/>
-                        <outlet property="bill20" destination="KMP-rM-i3u" id="tKh-af-UJY"/>
-                        <outlet property="bill5" destination="LE3-hb-xui" id="jJP-Sh-nfb"/>
-                        <outlet property="bill50" destination="esU-wr-Ci3" id="Ufp-Rm-hXk"/>
                         <outlet property="calcDisplay" destination="sJ2-rU-91k" id="3cs-aQ-PLV"/>
                         <outlet property="calculatorView" destination="GdP-5N-LQY" id="k6j-cs-WUV"/>
-                        <outlet property="changeLbl" destination="Erx-eE-pWe" id="eZ8-GQ-mzc"/>
                         <outlet property="productsCV" destination="fTi-VV-Jbw" id="Lix-4T-x4i"/>
-                        <outlet property="totalLbl" destination="588-lH-VZU" id="QvL-z0-9yz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-306" y="-30"/>
+            <point key="canvasLocation" x="-777" y="-399"/>
+        </scene>
+        <!--RigthVC-->
+        <scene sceneID="B3i-ZK-8gl">
+            <objects>
+                <viewController id="jZr-oG-JFn" customClass="RigthVC" customModule="CafeCashRegister" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4yb-U6-tPn">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="653"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ee2-Ed-RkA">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="653"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swv-F2-ZLx" customClass="MaterialView" customModule="CafeCashRegister" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqh-pH-0tZ">
+                                                <rect key="frame" x="131" y="11" width="38" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="3UN-a7-bft"/>
+                                            <constraint firstItem="Bqh-pH-0tZ" firstAttribute="centerX" secondItem="Swv-F2-ZLx" secondAttribute="centerX" id="Bcs-kb-1eY"/>
+                                            <constraint firstItem="Bqh-pH-0tZ" firstAttribute="leading" secondItem="Swv-F2-ZLx" secondAttribute="leading" constant="8" id="UYE-oE-usu"/>
+                                            <constraint firstAttribute="height" constant="44" id="hGj-hk-bBP"/>
+                                            <constraint firstItem="Bqh-pH-0tZ" firstAttribute="centerY" secondItem="Swv-F2-ZLx" secondAttribute="centerY" id="hfW-yZ-Cgd"/>
+                                            <constraint firstAttribute="trailing" secondItem="Bqh-pH-0tZ" secondAttribute="trailing" constant="8" id="mbO-CS-XqC"/>
+                                            <constraint firstAttribute="width" constant="300" id="wp8-vG-BhE"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="3UN-a7-bft"/>
+                                                <exclude reference="wp8-vG-BhE"/>
+                                                <exclude reference="mbO-CS-XqC"/>
+                                                <exclude reference="UYE-oE-usu"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="87L-aN-X5X">
+                                        <rect key="frame" x="0.0" y="52" width="300" height="395"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="178-7c-C95"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BagItemCell" rowHeight="70" id="a6L-hy-2FP" customClass="BagItemCell" customModule="CafeCashRegister" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="300" height="70"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a6L-hy-2FP" id="vqQ-x7-Btm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe" translatesAutoresizingMaskIntoConstraints="NO" id="p7N-21-IKh">
+                                                            <rect key="frame" x="8" y="10" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="2MT-MN-MTd"/>
+                                                                <constraint firstAttribute="width" constant="50" id="Msf-Eb-vhH"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33O-cE-kJg">
+                                                            <rect key="frame" x="66" y="10" width="168" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="Ql7-83-DSM"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.99 €" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g54-QM-3UE">
+                                                            <rect key="frame" x="242" y="10" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="SBW-at-QmR"/>
+                                                                <constraint firstAttribute="width" constant="50" id="lw2-IL-f6X"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="33O-cE-kJg" firstAttribute="centerY" secondItem="vqQ-x7-Btm" secondAttribute="centerY" id="IFt-3N-xtv"/>
+                                                        <constraint firstItem="33O-cE-kJg" firstAttribute="leading" secondItem="p7N-21-IKh" secondAttribute="trailing" constant="8" id="IzZ-Cb-zWL"/>
+                                                        <constraint firstItem="g54-QM-3UE" firstAttribute="leading" secondItem="33O-cE-kJg" secondAttribute="trailing" constant="8" id="LpB-nw-IY2"/>
+                                                        <constraint firstItem="p7N-21-IKh" firstAttribute="centerY" secondItem="vqQ-x7-Btm" secondAttribute="centerY" id="OvZ-LE-Obp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="g54-QM-3UE" secondAttribute="trailing" constant="8" id="mFQ-xK-3vb"/>
+                                                        <constraint firstItem="g54-QM-3UE" firstAttribute="centerY" secondItem="vqQ-x7-Btm" secondAttribute="centerY" id="uS2-Bv-xLc"/>
+                                                        <constraint firstItem="p7N-21-IKh" firstAttribute="leading" secondItem="vqQ-x7-Btm" secondAttribute="leading" constant="8" id="xho-rx-8dt"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="1" green="0.40695837769999998" blue="0.033196996600000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outlet property="name" destination="33O-cE-kJg" id="Aqj-QQ-0pE"/>
+                                                    <outlet property="price" destination="g54-QM-3UE" id="ROJ-D2-b1a"/>
+                                                    <outlet property="thumbImg" destination="p7N-21-IKh" id="5Kj-MM-Nvq"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="178-7c-C95"/>
+                                            </mask>
+                                        </variation>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBj-zA-AzR" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="455" width="300" height="40"/>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ADh-zh-caT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Limpar">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cleanBag:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ghR-T5-lnW"/>
+                                            <action selector="cleanBag:" destination="jZr-oG-JFn" eventType="touchUpInside" id="iMP-nH-5lG"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5n-hQ-usH" customClass="MaterialView" customModule="CafeCashRegister" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="503" width="300" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rh1-80-Xmv" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
+                                                <rect key="frame" x="13" y="15" width="75" height="50"/>
+                                                <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="5 €">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="getChange:" destination="jZr-oG-JFn" eventType="touchUpInside" id="1vk-7e-7Nj"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDJ-Iv-jy9" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
+                                                <rect key="frame" x="105" y="15" width="75" height="50"/>
+                                                <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="10 €">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="getChange:" destination="jZr-oG-JFn" eventType="touchUpInside" id="2SJ-Ll-jlh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sb-Sf-yQd" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
+                                                <rect key="frame" x="13" y="81" width="75" height="50"/>
+                                                <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="20 €">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="getChange:" destination="jZr-oG-JFn" eventType="touchUpInside" id="9EA-2G-Wk4"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50.50 €" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy6-kO-0fL">
+                                                <rect key="frame" x="188" y="15" width="104" height="116"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KR-2R-K9s" customClass="MaterialButton" customModule="CafeCashRegister" customModuleProvider="target">
+                                                <rect key="frame" x="105" y="81" width="75" height="50"/>
+                                                <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="50 €">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="getChange:" destination="jZr-oG-JFn" eventType="touchUpInside" id="APV-FL-WXj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="diH-EY-krl"/>
+                                            <constraint firstAttribute="height" constant="150" id="f1e-vC-Ls3"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="diH-EY-krl"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="87L-aN-X5X" firstAttribute="width" secondItem="ee2-Ed-RkA" secondAttribute="width" id="1Qy-7N-Oxq"/>
+                                    <constraint firstItem="Swv-F2-ZLx" firstAttribute="width" secondItem="ee2-Ed-RkA" secondAttribute="width" id="3Ho-BZ-cb9"/>
+                                    <constraint firstAttribute="width" constant="300" id="XM7-3F-bbF"/>
+                                    <constraint firstItem="d5n-hQ-usH" firstAttribute="width" secondItem="Swv-F2-ZLx" secondAttribute="width" id="ZD7-2T-gmF"/>
+                                    <constraint firstItem="Swv-F2-ZLx" firstAttribute="leading" secondItem="ee2-Ed-RkA" secondAttribute="leading" id="cPF-zm-JLg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Swv-F2-ZLx" secondAttribute="trailing" id="fFw-he-G7s"/>
+                                    <constraint firstItem="d5n-hQ-usH" firstAttribute="width" secondItem="ee2-Ed-RkA" secondAttribute="width" id="g0w-BV-e9v"/>
+                                    <constraint firstItem="87L-aN-X5X" firstAttribute="width" secondItem="Swv-F2-ZLx" secondAttribute="width" id="o2q-ij-qZu"/>
+                                    <constraint firstItem="TBj-zA-AzR" firstAttribute="width" secondItem="ee2-Ed-RkA" secondAttribute="width" id="yVV-ll-6VZ"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="o2q-ij-qZu"/>
+                                        <exclude reference="ZD7-2T-gmF"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ee2-Ed-RkA" secondAttribute="bottom" id="6yT-j6-5Np"/>
+                            <constraint firstItem="ee2-Ed-RkA" firstAttribute="top" secondItem="4yb-U6-tPn" secondAttribute="top" id="SXa-Eu-H7I"/>
+                            <constraint firstAttribute="trailing" secondItem="ee2-Ed-RkA" secondAttribute="trailing" id="Uez-sd-wgV"/>
+                            <constraint firstItem="ee2-Ed-RkA" firstAttribute="leading" secondItem="4yb-U6-tPn" secondAttribute="leading" id="nEg-xW-AJ0"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="653"/>
+                    <connections>
+                        <outlet property="bagTV" destination="87L-aN-X5X" id="fYo-8N-MGl"/>
+                        <outlet property="bill10" destination="vDJ-Iv-jy9" id="Bae-dQ-PPL"/>
+                        <outlet property="bill20" destination="2sb-Sf-yQd" id="V4P-ab-yjc"/>
+                        <outlet property="bill5" destination="Rh1-80-Xmv" id="YfR-TB-h7A"/>
+                        <outlet property="bill50" destination="6KR-2R-K9s" id="5nX-Pp-ded"/>
+                        <outlet property="changeLbl" destination="Sy6-kO-0fL" id="XTY-m7-Mq9"/>
+                        <outlet property="totalLbl" destination="Bqh-pH-0tZ" id="pHK-i4-eVf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xkX-Jc-mS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="72" y="-399"/>
         </scene>
     </scenes>
     <resources>

@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+
+// All existing products
+var allProducts = [Product]()
+
+// All visible products
+var filteredProducts = [Product]()
+
+// Items in productBag
+var bagItems = [Product]()
+
+
+
+var activeBillTag = 0

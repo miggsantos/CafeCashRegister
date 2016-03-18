@@ -12,3 +12,6 @@ import UIKit
 let SHADOW_COLOR: CGFloat = 157.0 / 255.0
 
 let EURO = " € "
+
+let activeBillColor = UIColor(red: 36/255, green: 131/255, blue: 192/255, alpha: 255)
+let notActiveBillColor = UIColor(red: 46/255, green: 174/255, blue: 255/255, alpha: 255)
