@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -111,7 +111,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdP-5N-LQY">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdP-5N-LQY" customClass="CalculatorView" customModule="CafeCashRegister" customModuleProvider="target">
                                         <rect key="frame" x="674" y="0.0" width="0.0" height="653"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="812-5I-zvK">
@@ -122,7 +122,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="abu-mm-e2l"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="dMJ-x4-ouZ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I29-1R-ymd">
@@ -133,7 +133,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1bv-iw-mNO"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="nym-Hw-iL0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOw-08-bca">
@@ -144,7 +144,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MeQ-Ha-Dx6"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="R5w-Ls-V0G"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bit-Th-YVi">
@@ -155,7 +155,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8zg-lY-Zzb"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="qxJ-We-bsD"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N11-1P-7HS">
@@ -166,7 +166,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eCG-nH-BB4"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="mft-0G-a65"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzb-Vx-4cj">
@@ -177,7 +177,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h6a-Y1-N94"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="Gp5-h6-ESU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DU2-Px-Lbz">
@@ -188,7 +188,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YCW-D1-6HH"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="ywc-ov-gHA"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-D2-OjB">
@@ -199,7 +199,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1EA-Ce-ceh"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="pQp-1S-nhY"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d04-tg-WSL">
@@ -210,7 +210,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zST-gg-kCH"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="12u-nJ-Zti"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEx-RU-T8x">
@@ -221,7 +221,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1jb-yP-Ept"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="qWY-Ej-sVS"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Zh-ew-8no">
@@ -232,7 +232,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="addPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0iU-yb-bEm"/>
+                                                    <action selector="addPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="WsV-jA-8Vz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIh-gl-AC3">
@@ -243,7 +243,7 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="backspacePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xHx-Mb-3xZ"/>
+                                                    <action selector="backspacePressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="8BB-Pk-7Q2"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00 €" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJ2-rU-91k">
@@ -261,11 +261,14 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="calcNumberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mhU-GF-g4W"/>
+                                                    <action selector="numberPressed:" destination="GdP-5N-LQY" eventType="touchUpInside" id="jFR-ok-Hpa"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="calcDisplay" destination="sJ2-rU-91k" id="BuB-Ah-8nc"/>
+                                        </connections>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eb-aN-OHQ">
                                         <rect key="frame" x="684" y="0.0" width="300" height="653"/>
@@ -421,8 +424,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="calcDisplay" destination="sJ2-rU-91k" id="3cs-aQ-PLV"/>
-                        <outlet property="calculatorView" destination="GdP-5N-LQY" id="k6j-cs-WUV"/>
+                        <outlet property="calculatorView" destination="GdP-5N-LQY" id="MlE-Im-NTB"/>
                         <outlet property="productsCV" destination="fTi-VV-Jbw" id="Lix-4T-x4i"/>
                     </connections>
                 </viewController>
@@ -434,6 +436,10 @@
         <scene sceneID="B3i-ZK-8gl">
             <objects>
                 <viewController id="jZr-oG-JFn" customClass="RigthVC" customModule="CafeCashRegister" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cfb-h1-oXD"/>
+                        <viewControllerLayoutGuide type="bottom" id="63n-JC-kA0"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4yb-U6-tPn">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="653"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -465,8 +471,8 @@
                                             <mask key="constraints">
                                                 <exclude reference="3UN-a7-bft"/>
                                                 <exclude reference="wp8-vG-BhE"/>
-                                                <exclude reference="mbO-CS-XqC"/>
                                                 <exclude reference="UYE-oE-usu"/>
+                                                <exclude reference="mbO-CS-XqC"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -481,7 +487,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="300" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a6L-hy-2FP" id="vqQ-x7-Btm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="69.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe" translatesAutoresizingMaskIntoConstraints="NO" id="p7N-21-IKh">

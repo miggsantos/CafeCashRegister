@@ -14,23 +14,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //var filteredProducts = [Product]()
     //var bagItems = [Product]()
     
-    var runningNumber = ""
-
-    
-
-    
+    //var runningNumber = ""
     
     @IBOutlet weak var productsCV: UICollectionView!
 
-    @IBOutlet weak var calculatorView: UIView!
+    @IBOutlet weak var calculatorView: CalculatorView!
     
 
-    
-    @IBOutlet weak var calcDisplay: UILabel!
-    
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,6 +57,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
         filteredProducts.removeAll(keepCapacity: false)
         
+        
         if(sender.tag > 0){
         
             filteredProducts = allProducts.filter({$0.category.rawValue == sender.tag })
@@ -80,71 +71,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //productsCV.reloadData()
 
   
+
+        dispatch_async(dispatch_get_main_queue(), {
+    })
+        
+        
+        
+            self.productsCV.collectionViewLayout.invalidateLayout()
+            self.productsCV.reloadData()
+       
+   
+        
+
         self.calculatorView.hidden = true
         self.productsCV.hidden = false
         
-        
-        
-        
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            
-            
-            self.productsCV.reloadData()
-            
-        
-        })
-        
-
 
 
     }
     
-    // *************************
-    // ****** Calculator *******
-    // *************************
-    
-    @IBAction func calcNumberPressed(sender: UIButton) {
-        
-        if(sender.tag == -1){
-            
-            if !runningNumber.containsString(".") {
-                runningNumber += "."
-            }
-            
-        } else {
-            runningNumber += "\(sender.tag)"
-        }
-        
-        calcDisplay.text = "\(runningNumber) \(EURO) "
-        
-    }
-    
-    @IBAction func backspacePressed(sender: AnyObject) {
-        
-        runningNumber = String(runningNumber.characters.dropLast())
-        calcDisplay.text = "\(runningNumber) \(EURO) "
-    }
-    
-    @IBAction func addPressed(sender: AnyObject) {
-        
-        if let calcValue = Double(runningNumber)  {
-        
-            bagItems.append(Product.init( productId: 0,name: "valor manual", price: calcValue, category: Product.Category.TODOS, image: "euro.png" ))
-            
-            //bagTV.reloadData()
-            //showTotal()
-            
-            refreshTableView()
-            
-            runningNumber = ""
-            calcDisplay.text = "\(EURO) "
-            
-        } else {
-            print("not double")
-        }
-    }
-  
+
+
     
     @IBAction func calculatorBtnPressed(sender: AnyObject) {
 
@@ -186,7 +133,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductCell", forIndexPath: indexPath) as? ProductCell {
             
             let p:Product!
-            print("row= \(indexPath.row)")
+            //print("row= \(indexPath.row)")
             p = filteredProducts[indexPath.row]
             
             cell.configureCell(p)
@@ -197,10 +144,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             return UICollectionViewCell()
         }
     }
+
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(105, 105)
+        return CGSizeMake(117, 117)
     }
+    
+  
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
@@ -209,7 +159,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         p = filteredProducts[indexPath.row]
         
         if let index = bagItems.indexOf({$0.productId == p.productId}){
-            bagItems[index].quantity++
+            bagItems[index].quantity += 1
         } else {
             bagItems.append(Product(productId: p.productId, name: p.name, price: p.price, category: p.category ))
         }
@@ -220,6 +170,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         refreshTableView()
     }
+    
+    
     
     
     func refreshTableView(){

@@ -15,6 +15,7 @@
 		934CB45F1BD2BF1F001B735B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 934CB45D1BD2BF1F001B735B /* LaunchScreen.storyboard */; };
 		934CB46A1BD5B748001B735B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB4691BD5B748001B735B /* Product.swift */; };
 		934CB46C1BD5BD4B001B735B /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB46B1BD5BD4B001B735B /* ProductCell.swift */; };
+		93CDAB0A1CAB45DB0055B443 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CDAB091CAB45DB0055B443 /* CalculatorView.swift */; };
 		93D4BF3E1BD854DB00C0F769 /* BagItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4BF3D1BD854DB00C0F769 /* BagItemCell.swift */; };
 		93ED65F81C98C9970059DA4C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED65F71C98C9970059DA4C /* Constants.swift */; };
 		93ED65FA1C98CA0C0059DA4C /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED65F91C98CA0C0059DA4C /* MaterialView.swift */; };
@@ -35,6 +36,7 @@
 		934CB4601BD2BF1F001B735B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		934CB4691BD5B748001B735B /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		934CB46B1BD5BD4B001B735B /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		93CDAB091CAB45DB0055B443 /* CalculatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		93D4BF3D1BD854DB00C0F769 /* BagItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItemCell.swift; sourceTree = "<group>"; };
 		93ED65F71C98C9970059DA4C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		93ED65F91C98CA0C0059DA4C /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				93ED65F91C98CA0C0059DA4C /* MaterialView.swift */,
 				93ED65FB1C98CC600059DA4C /* MaterialButton.swift */,
 				93ED65FD1C98D9580059DA4C /* MaterialTableView.swift */,
+				93CDAB091CAB45DB0055B443 /* CalculatorView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				93ED65FC1C98CC600059DA4C /* MaterialButton.swift in Sources */,
 				934CB4521BD2BF1F001B735B /* AppDelegate.swift in Sources */,
 				934CB45A1BD2BF1F001B735B /* CafeCashRegister.xcdatamodeld in Sources */,
+				93CDAB0A1CAB45DB0055B443 /* CalculatorView.swift in Sources */,
 				93ED65FA1C98CA0C0059DA4C /* MaterialView.swift in Sources */,
 				93ED66041C9B82220059DA4C /* RigthVC.swift in Sources */,
 			);
