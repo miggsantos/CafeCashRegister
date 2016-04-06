@@ -10,7 +10,7 @@ import UIKit
 
 class RigthVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var bagTV: MaterialTableView!
+    @IBOutlet weak var bagTV: UITableView!
     @IBOutlet weak var totalLbl: UILabel!
     
     @IBOutlet weak var bill5: UIButton!

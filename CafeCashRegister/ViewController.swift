@@ -31,22 +31,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         calculatorView.hidden = true
         productsCV.hidden = false
         
-        allProducts.append(Product.init( productId: 1,name: "café", price: 0.55, category: Product.Category.CAFE ))
-        allProducts.append(Product.init( productId: 2, name: "descafeinado", price: 0.45, category: Product.Category.CAFE))
-        allProducts.append(Product.init( productId: 3, name: "carioca", price: 0.45, category: Product.Category.CAFE))
-        allProducts.append(Product.init( productId: 4, name: "cerveja", price: 0.75, category: Product.Category.ALCOOL))
-        allProducts.append(Product.init( productId: 5,name: "vinho", price: 0.35, category: Product.Category.ALCOOL ))
-        allProducts.append(Product.init( productId: 6,name: "chá", price: 0.55, category: Product.Category.CAFE ))
-        allProducts.append(Product.init( productId: 7, name: "pastilhas", price: 0.45, category: Product.Category.COMER))
-        allProducts.append(Product.init( productId: 8, name: "batatas fritas 0.80", price: 0.45, category: Product.Category.COMER))
-        allProducts.append(Product.init( productId: 9, name: "coca-cola", price: 0.75, category: Product.Category.BEBIDAS))
-        allProducts.append(Product.init( productId: 10,name: "sumol", price: 0.35, category: Product.Category.BEBIDAS ))
+        addTestData()
+        
+
         
         filteredProducts = allProducts
         
-        //changeLbl.text = ""
-        //resetBillButtons()
-        
+    
     }
     
     
@@ -68,8 +59,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         
 
-        //productsCV.reloadData()
-
   
 
         dispatch_async(dispatch_get_main_queue(), {
@@ -77,20 +66,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         
         
-            self.productsCV.collectionViewLayout.invalidateLayout()
-            self.productsCV.reloadData()
-       
-   
-        
+        self.productsCV.collectionViewLayout.invalidateLayout()
+        self.productsCV.reloadData()
 
         self.calculatorView.hidden = true
         self.productsCV.hidden = false
-        
-
 
     }
-    
-
 
     
     @IBAction func calculatorBtnPressed(sender: AnyObject) {
@@ -106,9 +88,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         
     }
-    
-
-    
 
     
     // **************************
@@ -163,10 +142,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         } else {
             bagItems.append(Product(productId: p.productId, name: p.name, price: p.price, category: p.category ))
         }
-
-        
-        //bagTV.reloadData()
-        //showTotal()
         
         refreshTableView()
     }
@@ -177,6 +152,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func refreshTableView(){
         
         NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil)
+    }
+    
+    func addTestData(){
+        allProducts.append(Product.init( productId: 1,name: "café", price: 0.55, category: Product.Category.CAFE ))
+        allProducts.append(Product.init( productId: 2, name: "descafeinado", price: 0.45, category: Product.Category.CAFE))
+        allProducts.append(Product.init( productId: 3, name: "carioca", price: 0.45, category: Product.Category.CAFE))
+        allProducts.append(Product.init( productId: 4, name: "cerveja", price: 0.75, category: Product.Category.ALCOOL))
+        allProducts.append(Product.init( productId: 5,name: "vinho", price: 0.35, category: Product.Category.ALCOOL ))
+        allProducts.append(Product.init( productId: 6,name: "chá", price: 0.55, category: Product.Category.CAFE ))
+        allProducts.append(Product.init( productId: 7, name: "pastilhas", price: 0.45, category: Product.Category.COMER))
+        allProducts.append(Product.init( productId: 8, name: "batatas fritas 0.80", price: 0.45, category: Product.Category.COMER))
+        allProducts.append(Product.init( productId: 9, name: "coca-cola", price: 0.75, category: Product.Category.BEBIDAS))
+        allProducts.append(Product.init( productId: 10,name: "sumol", price: 0.35, category: Product.Category.BEBIDAS ))
     }
 
 }
