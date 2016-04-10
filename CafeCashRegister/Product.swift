@@ -63,7 +63,7 @@ class Product {
     }
     
     var priceStr: String {
-        return "\(self.price) €"
+        return "\(self.price) \(EURO)"
     }
     
     var quantity: Int {
@@ -90,6 +90,11 @@ class Product {
         return _category
     }
 
+    init(name: String, price:Double ) {
+        self._name = name
+        self._price = price
+    }
+    
     init(productId: Int ,name: String, price:Double, category:Category ) {
         self._name = name
         self._productId = productId

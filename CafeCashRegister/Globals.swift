@@ -18,6 +18,7 @@ var filteredProducts = [Product]()
 // Items in productBag
 var bagItems = [Product]()
 
+var addedItems = [AddedItem]()
 
 
 var activeBillTag = 0

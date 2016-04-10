@@ -177,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="-777" y="626"/>
         </scene>
-        <!--View Controller-->
+        <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CafeCashRegister" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="CafeCashRegister" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -212,7 +212,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="q2s-sm-uLu" customClass="ProductCell" customModule="CafeCashRegister" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="q2s-sm-uLu" customClass="ItemCell_CV" customModule="CafeCashRegister" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -575,10 +575,10 @@
             </objects>
             <point key="canvasLocation" x="-777" y="-399"/>
         </scene>
-        <!--RigthVC-->
+        <!--Main RightVC-->
         <scene sceneID="B3i-ZK-8gl">
             <objects>
-                <viewController id="jZr-oG-JFn" customClass="RigthVC" customModule="CafeCashRegister" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jZr-oG-JFn" customClass="Main_RightVC" customModule="CafeCashRegister" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cfb-h1-oXD"/>
                         <viewControllerLayoutGuide type="bottom" id="63n-JC-kA0"/>
@@ -629,7 +629,7 @@
                                             <constraint firstAttribute="width" constant="300" id="178-7c-C95"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BagItemCell" rowHeight="70" id="a6L-hy-2FP" customClass="BagItemCell" customModule="CafeCashRegister" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BagItemCell" rowHeight="70" id="a6L-hy-2FP" customClass="Item_Main_TVCell" customModule="CafeCashRegister" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="300" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a6L-hy-2FP" id="vqQ-x7-Btm">
