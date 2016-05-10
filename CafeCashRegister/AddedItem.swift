@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class AddedItem {
     
@@ -15,11 +16,22 @@ class AddedItem {
     private var _name:String!
     private var _price:Double!
     private var _quantity:Int!
+    private var _image:UIImage!
     
     var id: String {
         return _id
     }
    
+    var image: UIImage {
+        if _image != nil{
+            return _image
+        } else {
+            return UIImage(named: "cafe.png")!
+        }
+        
+        
+    }
+    
     var name: String {
         get{ return _name.capitalizedString }
         set{ _name = newValue }
@@ -62,13 +74,13 @@ class AddedItem {
         }
     }
     
-    init(objectId:String, name: String, price:Double) {
+    init(objectId:String, name: String, price:Double, image:UIImage) {
         
         self._id = objectId
         self._name = name
         self._price = price
-        
-    
+        self._image = image
+
     }
     
 }

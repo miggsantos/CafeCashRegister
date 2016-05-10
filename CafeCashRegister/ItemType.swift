@@ -14,4 +14,8 @@ class ItemType: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
+    func setValues(type:String){
+        self.created = NSDate()
+        self.type = type
+    }
 }

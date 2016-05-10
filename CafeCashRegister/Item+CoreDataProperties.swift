@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  CafeCashRegister
 //
-//  Created by Miguel Santos on 10/04/16.
+//  Created by Miguel Santos on 19/04/16.
 //  Copyright © 2016 Miguel Santos. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,9 +14,10 @@ import CoreData
 
 extension Item {
 
+    @NSManaged var image: NSData?
     @NSManaged var name: String?
     @NSManaged var price: NSNumber?
-    @NSManaged var image: NSData?
+    @NSManaged var created: NSDate?
     @NSManaged var itemtype: ItemType?
 
 }

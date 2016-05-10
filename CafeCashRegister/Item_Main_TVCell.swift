@@ -30,7 +30,7 @@ class Item_Main_TVCell: UITableViewCell {
     func configureCell(item: AddedItem) {
         self.name.text = item.nameAndQty
         self.price.text = item.priceWithCurrency
-        self.thumbImg.image = UIImage(named: "cafe")
+        self.thumbImg.image = item.image
         //self.thumbImg.layer.cornerRadius = 5.0
         
     }

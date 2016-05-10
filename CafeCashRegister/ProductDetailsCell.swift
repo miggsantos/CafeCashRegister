@@ -14,12 +14,12 @@ class ProductDetailsCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
     
-    var product: Product!
+    var item: Item!
     
-    func configureCell(product: Product) {
-        self.product = product
-        self.nameLbl.text = self.product.name
-        self.priceLbl.text = self.product.price.description
+    func configureCell(item: Item) {
+        self.item = item
+        self.nameLbl.text = self.item.name
+        self.priceLbl.text = self.item.price!.description
         
         //self.thumbImg.image = UIImage(named: "\(self.pokemon.pokedexId)")
         

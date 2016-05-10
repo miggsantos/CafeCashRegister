@@ -115,7 +115,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             //print("row= \(indexPath.row)")
             p = filteredProducts[indexPath.row]
             
-            cell.configureCell(p)
+           // cell.configureCell(p)
             
             return cell
         

@@ -18,6 +18,7 @@ class ItemCell_CV: UICollectionViewCell {
         
         self.nameLbl.text = item.name
         //self.thumbImg.image = UIImage(named: "\(self.pokemon.pokedexId)")
+        self.thumbImg.image = item.getItemImg()
         
     }
 }

@@ -22,11 +22,12 @@ class ProductCell: UICollectionViewCell {
         
     }
     
-    func configureCell(product: Product) {
-        self.product = product
+    func configureCell(item: Item) {
+        //self.product = product
         
         self.nameLbl.text = self.product.name
         //self.thumbImg.image = UIImage(named: "\(self.pokemon.pokedexId)")
+        self.thumbImg.image = item.getItemImg()
         
     }
     

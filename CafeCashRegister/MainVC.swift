@@ -94,12 +94,15 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             fetchAndSetResultsByItemType("Cafe")
             break;
         case 2:
-            fetchAndSetResultsByItemType("Alcool")
+            fetchAndSetResultsByItemType("Bebidas")
             break;
         case 3:
-            fetchAndSetResultsByItemType("Comer")
+            fetchAndSetResultsByItemType("Alcool")
             break;
         case 4:
+            fetchAndSetResultsByItemType("Comer")
+            break;
+        case 5:
             fetchAndSetResultsByItemType("Tabaco")
             break;
             
@@ -203,20 +206,20 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         if let index = addedItems.indexOf({$0.id == (item.objectID.URIRepresentation().absoluteString) }){
             addedItems[index].quantity += 1
         } else {
-            addedItems.append(AddedItem(objectId: (item.objectID.URIRepresentation().absoluteString) , name: item.name!, price: Double(item.price!) ))
+            addedItems.append(AddedItem(objectId: (item.objectID.URIRepresentation().absoluteString) , name: item.name!, price: Double(item.price!), image: item.getItemImg()  ))
         }
         
         refreshTableView()
     }
     
-    func configureCell(cell: ItemCell_CV, indexPath: NSIndexPath){
-        
-        if let item = fetchedResultsController.objectAtIndexPath(indexPath) as? Item {
-            //update data
-            cell.configureCell(item)
-        }
-        
-    }
+//    func configureCell(cell: ItemCell_CV, indexPath: NSIndexPath){
+//        
+//        if let item = fetchedResultsController.objectAtIndexPath(indexPath) as? Item {
+//            //update data
+//            cell.configureCell(item)
+//        }
+//        
+//    }
 
     
     func refreshTableView(){
@@ -229,19 +232,28 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func generateTestData(){
         
         let type1 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        type1.type = "Cafe"
+        type1.setValues("Cafe")
+        
+        appDelegate.saveContext()
         
         let type2 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        type2.type = "Bebidas"
+        type2.setValues("Bebidas")
+        
+        appDelegate.saveContext()
         
         let type3 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        type3.type = "Alcool"
+        type3.setValues("Alcool")
+        
+        appDelegate.saveContext()
         
         let type4 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        type4.type = "Comer"
+        type4.setValues("Comer")
+        
+        appDelegate.saveContext()
+        
         
         let type5 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        type5.type = "Tabaco"
+        type5.setValues("Tabaco")
         
         
         appDelegate.saveContext()
@@ -250,54 +262,44 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
      
         
         let item1 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item1.name = "café"
-        item1.price = 0.55
-        item1.itemtype = type1
+        item1.setValues("café", price: 0.55, itemType: type1)
         
+        appDelegate.saveContext()
         let item2 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item2.name = "descafeinado"
-        item2.price = 0.45
-        item2.itemtype = type1
+        item2.setValues("descafeinado", price: 0.45, itemType: type1)
+appDelegate.saveContext()
         
         let item3 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item3.name = "carioca"
-        item3.price = 0.55
-        item3.itemtype = type1
+        item3.setValues("carioca", price: 0.55, itemType: type1)
+appDelegate.saveContext()
         
         let item4 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item4.name = "cerveja"
-        item4.price = 0.55
-        item4.itemtype = type3
+        item4.setValues("cerveja", price: 0.75, itemType: type3)
+appDelegate.saveContext()
         
         let item5 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item5.name = "vinho"
-        item5.price = 0.55
-        item5.itemtype = type3
+        item5.setValues("vinho", price: 0.35, itemType: type3)
+appDelegate.saveContext()
         
         let item6 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item6.name = "chá"
-        item6.price = 0.55
-        item6.itemtype = type1
+        item6.setValues("chá", price: 0.55, itemType: type1)
+appDelegate.saveContext()
         
         let item7 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item7.name = "pastilhas"
-        item7.price = 0.55
-        item7.itemtype = type4
+        item7.setValues("pastilhas", price: 0.05, itemType: type4)
+appDelegate.saveContext()
         
         let item8 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item8.name = "atatas fritas 0.80"
-        item8.price = 0.55
-        item8.itemtype = type4
+        item8.setValues("batatas fritas 0.80", price: 0.80, itemType: type4)
+appDelegate.saveContext()
         
         let item9 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item9.name = "coca-cola"
-        item9.price = 0.55
-        item9.itemtype = type2
+        item9.setValues("coca-cola", price: 0.75, itemType: type2)
+appDelegate.saveContext()
 
         let item10 = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: appDelegate.managedObjectContext) as! Item
-        item10.name = "sumol"
-        item10.price = 0.55
-        item10.itemtype = type2
+        item10.setValues("sumol", price: 0.65, itemType: type2)
+
         
         appDelegate.saveContext()
         
@@ -305,22 +307,23 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     func generateItemTypes(){
         let item1 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        item1.type = "Cafe"
-        
+        item1.setValues("Cafe")
+
         let item2 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        item2.type = "Bebidas"
-        
-        let item3 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        item3.type = "Alcool"
-        
-        let item4 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        item4.type = "Comer"
-        
-        let item5 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
-        item5.type = "Tabaco"
+        item2.setValues("Bebidas")
 
         
-        appDelegate.saveContext()
+        let item3 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
+        item3.setValues("Alcool")
+
+        
+        let item4 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
+        item4.setValues("Comer")
+ 
+        
+        let item5 = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: appDelegate.managedObjectContext) as! ItemType
+        item5.setValues("Tabaco")
+
         
     }
     
