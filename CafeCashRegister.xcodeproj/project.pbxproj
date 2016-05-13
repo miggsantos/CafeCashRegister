@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931CC7B21CE2C31000DF5FA8 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CC7B11CE2C31000DF5FA8 /* ImageExtension.swift */; };
 		93447AF51CC5B4A5001C6E1E /* ItemType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93447AF31CC5B4A5001C6E1E /* ItemType+CoreDataProperties.swift */; };
 		93447AF61CC5B4A5001C6E1E /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93447AF41CC5B4A5001C6E1E /* Item+CoreDataProperties.swift */; };
 		934CB4521BD2BF1F001B735B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB4511BD2BF1F001B735B /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		931CC7B11CE2C31000DF5FA8 /* ImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		93447AF31CC5B4A5001C6E1E /* ItemType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ItemType+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		93447AF41CC5B4A5001C6E1E /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		934CB44E1BD2BF1F001B735B /* CafeCashRegister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeCashRegister.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 				934CB4551BD2BF1F001B735B /* Main.storyboard */,
 				939264B01CB5CD0200118C95 /* MaterialView.swift */,
 				939264B21CB5D3F500118C95 /* ProductDetailsCell.swift */,
+				931CC7B11CE2C31000DF5FA8 /* ImageExtension.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				934CB4521BD2BF1F001B735B /* AppDelegate.swift in Sources */,
 				934CB45A1BD2BF1F001B735B /* CafeCashRegister.xcdatamodeld in Sources */,
 				939264B31CB5D3F500118C95 /* ProductDetailsCell.swift in Sources */,
+				931CC7B21CE2C31000DF5FA8 /* ImageExtension.swift in Sources */,
 				93447AF51CC5B4A5001C6E1E /* ItemType+CoreDataProperties.swift in Sources */,
 				939264C41CB8A77E00118C95 /* Main_RightVC.swift in Sources */,
 				93CDAB0A1CAB45DB0055B443 /* CalculatorView.swift in Sources */,

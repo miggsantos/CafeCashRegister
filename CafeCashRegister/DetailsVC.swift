@@ -23,9 +23,10 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     var types = [ItemType]()
     
-    var items = [Item]()
+    var editItem: Item?
+    var editItemFlag: Bool = false
     
-    var results:[[String:Item]]?
+
     
     
     override func viewDidLoad() {
@@ -103,8 +104,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: appDelegate.managedObjectContext, sectionNameKeyPath: section, cacheName: nil)
         
-        //controller.delegate = self
-        
         fetchedResultsController = controller
         
         
@@ -114,11 +113,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         //let section : String? = segment.selectedSegmentIndex == 1 ? "store.name" : nil
         
         let section : String? =  "itemtype.type"
-        
         let fetchRequest = NSFetchRequest(entityName: "Item")
-
-        
-        
         let sortDescriptor = NSSortDescriptor(key: "itemtype.type", ascending: true)
         //let sortDescriptor2 = NSSortDescriptor(key: "itemtype.created", ascending: true)
         let sortDescriptor3 = NSSortDescriptor(key: "created", ascending: true)
@@ -130,8 +125,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         controller.delegate = self
         
         fetchedResultsController = controller
-        
-        
     }
 
     
@@ -156,24 +149,50 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBAction func saveProduct(sender: AnyObject) {
 
         
-        if let name = txt_name.text where name != "" {
-            
-
-            let context = appDelegate.managedObjectContext
-            let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: context)!
-            let item = Item(entity: entity, insertIntoManagedObjectContext: context)
-            
+        if let name = txt_name.text where name != "",
+           let price = txt_price.text where price != ""
+        {
             
             let t = types[picker_Category.selectedRowInComponent(0)]
             
-            print(t.type)
-            print(t.created?.description)
+            //print(t.type)
+            //print(t.created?.description)
             
-            item.setValues(txt_name.text!, price: NSNumber.init(double: Double(txt_price.text!)!), itemType: t)
+            let context = appDelegate.managedObjectContext
             
-            //items.append(item)
+            let item:Item
             
-            context.insertObject(item)
+            
+            if editItemFlag {
+                
+                editItemFlag = false
+                
+                item = editItem!
+                item.setValues(name, price: NSNumber.init(double: Double(price)!), itemType: t)
+                item.setItemImage(itemImage.image!)
+                
+            } else {
+                
+                let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: context)!
+                item = Item(entity: entity, insertIntoManagedObjectContext: context)
+                
+                item.setValues(name, price: NSNumber.init(double: Double(price)!), itemType: t)
+                
+                var img = itemImage.image!
+                
+                print("1=\((UIImagePNGRepresentation(img)?.length)!/1024)")
+                img = img.resize(0.1)
+                print("2=\((UIImagePNGRepresentation(img)?.length)!/1024)")
+                
+                item.setItemImage(img)
+                
+                
+                context.insertObject(item)
+            
+            }
+            
+
+
             
             
             do {
@@ -181,13 +200,9 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             } catch {
                 print("Could not save recipe")
             }
-            
- 
+
             cleanfields()
-    
-            
-            //self.navigationController?.popViewControllerAnimated(true)
-            
+
         }
         
     }
@@ -196,8 +211,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         txt_name.text = ""
         txt_price.text = ""
         itemImage.image = UIImage(named: "add.png")
-        
-
     }
    
 
@@ -247,8 +260,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections{
-            
-            //print("sections.count= \(sections.count)")
             return sections.count
         }
         
@@ -257,20 +268,74 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        //print("numberOfRowsInSection= \(section)")
-        //print("numberOfRowsInSection= \(types[section].type)")
-        
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
-            
-            //print("sectionInfo.numberOfObjects= \(currentSection.numberOfObjects)")
             return currentSection.numberOfObjects
         }
         
         return 0
     }
     
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .Destructive, title: "Apagar") { action, index in
+            
+            let managedObject:NSManagedObject = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
+            let context = appDelegate.managedObjectContext
+            context.deleteObject(managedObject)
+            do {
+                try context.save()
+            } catch {
+                print("Could not delete")
+            }
+            
+            
+        }
 
+        let edit = UITableViewRowAction(style: .Normal, title: "Editar") { action, index in
+            let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+            self.txt_price.text = "\(item.price!)"
+            self.txt_name.text = item.name
+            self.itemImage.image = item.getItemImg()
+            
+            
+            if let row = self.types.indexOf(item.itemtype!) {
+                self.picker_Category.selectRow(row, inComponent: 0, animated: false)
+            }
+            
+            self.editItemFlag = true
+            self.editItem = item
+            
+            
+        }
+        edit.backgroundColor = UIColor.lightGrayColor()
+
+        return [delete, edit]
+    }
+    
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if editingStyle == .Delete {
+//            let managedObject:NSManagedObject = fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
+//            let context = appDelegate.managedObjectContext
+//            context.deleteObject(managedObject)
+//            do {
+//                try context.save()
+//            } catch {
+//                print("Could not delete")
+//            }
+//        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let alertView = UIAlertController(title: "EDITAR", message: "Quer editar este produto?", preferredStyle: UIAlertControllerStyle.Alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("ProductDetailsCell", forIndexPath: indexPath) as? ProductDetailsCell {
             
@@ -285,6 +350,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    
     func configureCell(cell: ProductDetailsCell, indexPath: NSIndexPath){
         
         if let item = fetchedResultsController.objectAtIndexPath(indexPath) as? Item {
@@ -294,6 +360,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
     }
     
+    //****** CONTROLLER *******
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         productListTV.beginUpdates()
     }
