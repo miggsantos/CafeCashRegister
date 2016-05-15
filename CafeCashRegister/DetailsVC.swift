@@ -17,6 +17,11 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var productListTV: UITableView!
     
+    @IBOutlet weak var btn_cancel: UIButton!
+    @IBOutlet weak var btn_save: UIButton!
+    @IBOutlet weak var createEditView: UIView!
+    
+    
     var fetchedResultsController: NSFetchedResultsController!
     
     var imagePicker: UIImagePickerController!
@@ -25,6 +30,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     var editItem: Item?
     var editItemFlag: Bool = false
+    var editItemImageFlag: Bool = false
     
 
     
@@ -40,6 +46,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        
+        btn_cancel.hidden = true
         
         fetchTypes()
         
@@ -131,6 +139,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         itemImage.image = image
+        
+        editItemImageFlag = true
     }
     
     
@@ -169,7 +179,16 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 
                 item = editItem!
                 item.setValues(name, price: NSNumber.init(double: Double(price)!), itemType: t)
-                item.setItemImage(itemImage.image!)
+                
+                if editItemImageFlag {
+                    editItemImageFlag = false
+                    var img = itemImage.image!
+                    img = img.resize(0.1)
+                    item.setItemImage(img.resize(0.1))
+                
+                } else {
+                    item.setItemImage(itemImage.image!)
+                }
                 
             } else {
                 
@@ -192,13 +211,10 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             }
             
 
-
-            
-            
             do {
                 try context.save()
             } catch {
-                print("Could not save recipe")
+                print("Could not save Item")
             }
 
             cleanfields()
@@ -211,9 +227,16 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         txt_name.text = ""
         txt_price.text = ""
         itemImage.image = UIImage(named: "add.png")
+        btn_cancel.hidden = true
+        btn_save.titleLabel?.text = "Guardar"
+        createEditView.backgroundColor = UIColor.whiteColor()
     }
    
 
+    @IBAction func cancelPressed(sender: AnyObject) {
+        cleanfields()
+        productListTV.setEditing(false, animated: true)
+    }
     
     
     //Pick View
@@ -304,12 +327,15 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
             self.editItemFlag = true
             self.editItem = item
+            self.btn_cancel.hidden = false
+            self.btn_save.titleLabel?.text = "Guardar Alterações"
+            self.createEditView.backgroundColor = UIColor.lightGrayColor()
             
             
         }
         edit.backgroundColor = UIColor.lightGrayColor()
 
-        return [delete, edit]
+        return [edit, delete]
     }
     
 
@@ -318,28 +344,18 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == .Delete {
-//            let managedObject:NSManagedObject = fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
-//            let context = appDelegate.managedObjectContext
-//            context.deleteObject(managedObject)
-//            do {
-//                try context.save()
-//            } catch {
-//                print("Could not delete")
-//            }
-//        }
+
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let alertView = UIAlertController(title: "EDITAR", message: "Quer editar este produto?", preferredStyle: UIAlertControllerStyle.Alert)
-        alertView.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alertView, animated: true, completion: nil)
-    }
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let alertView = UIAlertController(title: "EDITAR", message: "Quer editar este produto?", preferredStyle: UIAlertControllerStyle.Alert)
+//        alertView.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+//        self.presentViewController(alertView, animated: true, completion: nil)
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("ProductDetailsCell", forIndexPath: indexPath) as? ProductDetailsCell {
             
-            //cell.configureCell(allProducts[indexPath.row])
             configureCell(cell, indexPath: indexPath)
             
             return cell
