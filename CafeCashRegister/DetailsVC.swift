@@ -173,7 +173,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             let item:Item
             
             
-            if editItemFlag {
+            if editItemFlag { // edit
                 
                 editItemFlag = false
                 
@@ -197,14 +197,28 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 
                 item.setValues(name, price: NSNumber.init(double: Double(price)!), itemType: t)
                 
+/*
                 var img = itemImage.image!
+                var imgData:NSData = UIImagePNGRepresentation(img)!
+                var imgSize:Int = imgData.length
+                var imageSizeInKB = imgSize / 1024
+                print("Size Before=\(imageSizeInKB)")
                 
-                print("1=\((UIImagePNGRepresentation(img)?.length)!/1024)")
-                img = img.resize(0.1)
-                print("2=\((UIImagePNGRepresentation(img)?.length)!/1024)")
+                
+                //img = img.resize(0.1)
+                
+                img = img.imageWithSize_AspectFill(CGSize(width: 117, height: 117))
+                    
+                imgData = UIImagePNGRepresentation(img)!
+                imgSize = imgData.length
+                imageSizeInKB = imgSize / 1024
+                
+                print("Size After =\(imageSizeInKB)")
+*/
+                
+                let img = itemImage.image!.imageWithSize_AspectFill(CGSize(width: 117, height: 117))
                 
                 item.setItemImage(img)
-                
                 
                 context.insertObject(item)
             
