@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		931CC7B21CE2C31000DF5FA8 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CC7B11CE2C31000DF5FA8 /* ImageExtension.swift */; };
-		933D5E781CE808CD009B873C /* productsWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933D5E771CE808CD009B873C /* productsWS.swift */; };
+		933D5E781CE808CD009B873C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933D5E771CE808CD009B873C /* DataService.swift */; };
 		93447AF51CC5B4A5001C6E1E /* ItemType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93447AF31CC5B4A5001C6E1E /* ItemType+CoreDataProperties.swift */; };
 		93447AF61CC5B4A5001C6E1E /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93447AF41CC5B4A5001C6E1E /* Item+CoreDataProperties.swift */; };
 		934CB4521BD2BF1F001B735B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CB4511BD2BF1F001B735B /* AppDelegate.swift */; };
@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		931CC7B11CE2C31000DF5FA8 /* ImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
-		933D5E771CE808CD009B873C /* productsWS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = productsWS.swift; sourceTree = "<group>"; };
+		933D5E771CE808CD009B873C /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		93447AF31CC5B4A5001C6E1E /* ItemType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ItemType+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		93447AF41CC5B4A5001C6E1E /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		934CB44E1BD2BF1F001B735B /* CafeCashRegister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeCashRegister.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,7 +86,7 @@
 		933D5E761CE8086C009B873C /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				933D5E771CE808CD009B873C /* productsWS.swift */,
+				933D5E771CE808CD009B873C /* DataService.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -284,7 +284,7 @@
 				939264BE1CB71E4700118C95 /* MainVC.swift in Sources */,
 				93D4BF3E1BD854DB00C0F769 /* BagItemCell.swift in Sources */,
 				934CB46C1BD5BD4B001B735B /* ProductCell.swift in Sources */,
-				933D5E781CE808CD009B873C /* productsWS.swift in Sources */,
+				933D5E781CE808CD009B873C /* DataService.swift in Sources */,
 				934CB46A1BD5B748001B735B /* Product.swift in Sources */,
 				93CDAB0E1CB199750055B443 /* Utils.swift in Sources */,
 				939264B11CB5CD0200118C95 /* MaterialView.swift in Sources */,

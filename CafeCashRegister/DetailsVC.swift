@@ -449,6 +449,11 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     
+    @IBAction func getDataOnlinePressed(sender: AnyObject) {
+        
+        processOnlineData()
+
+    }
     
     /*
     // MARK: - Navigation
