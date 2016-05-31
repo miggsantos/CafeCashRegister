@@ -451,7 +451,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     @IBAction func getDataOnlinePressed(sender: AnyObject) {
         
-        processOnlineData()
+        DataService.instance.processOnlineData()
 
     }
     
