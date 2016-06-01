@@ -10,6 +10,7 @@ import UIKit
 
 class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //MARK: @IBOutlet
     @IBOutlet weak var bagTV: UITableView!
     @IBOutlet weak var totalLbl: UILabel!
     
@@ -18,6 +19,8 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var bill20: UIButton!
     @IBOutlet weak var bill50: UIButton!
     @IBOutlet weak var changeLbl: UILabel!
+    
+    //MARK: Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +41,10 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         showTotal()
     }
     
-    
-    
-    
-    // **************************
-    // ******* TableView ********
-    // **************************
-    
+
+
+    //MARK: TableView
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -83,21 +83,7 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
-    
-    
-    // *****************************
-    // ********* CHANGE ************
-    // *****************************
-    
-    func resetBillButtons(){
-        
-        bill5.backgroundColor = notActiveBillColor
-        bill10.backgroundColor = notActiveBillColor
-        bill20.backgroundColor = notActiveBillColor
-        bill50.backgroundColor = notActiveBillColor
-        
-    }
-    
+    //MARK: Buttons Actions
     
     @IBAction func getChange(sender: UIButton) {
         
@@ -112,6 +98,29 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         showChange( calculateChange(total) )
     }
     
+    @IBAction func cleanBag(sender: AnyObject) {
+        
+        addedItems.removeAll(keepCapacity: false)
+        totalLbl.text = "Total: 0.0 \(EURO)";
+        
+        
+        changeLbl.text = "";
+        activeBillTag = 0
+        resetBillButtons()
+        
+        bagTV.reloadData()
+    }
+    
+    //MARK: CHANGE
+    
+    func resetBillButtons(){
+        
+        bill5.backgroundColor = notActiveBillColor
+        bill10.backgroundColor = notActiveBillColor
+        bill20.backgroundColor = notActiveBillColor
+        bill50.backgroundColor = notActiveBillColor
+        
+    }
     
     func calculateChange(total:Double ) -> Double{
         
@@ -157,6 +166,7 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
+    //MARK: TOTAL CALCS
     
     func showTotal(){
         
@@ -179,17 +189,6 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return total
     }
     
-    @IBAction func cleanBag(sender: AnyObject) {
-        
-        addedItems.removeAll(keepCapacity: false)
-        totalLbl.text = "Total: 0.0 \(EURO)";
-        
-        
-        changeLbl.text = "";
-        activeBillTag = 0
-        resetBillButtons()
-        
-        bagTV.reloadData()
-    }
+
 
 }

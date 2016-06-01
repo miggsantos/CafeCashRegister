@@ -11,16 +11,17 @@ import CoreData
 
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate {
     
-
-    
-    var items = [Item]()
-    
-    var fetchedResultsController: NSFetchedResultsController!
+    //Mark: IBOutlet
     
     @IBOutlet weak var productsCV: UICollectionView!
-    
     @IBOutlet weak var calculatorView: CalculatorView!
     
+    //MARK: Vars
+    
+    var items = [Item]()
+    var fetchedResultsController: NSFetchedResultsController!
+    
+    //MARK: Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +36,17 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         //generateItemTypes()
         //generateTestData()
 
-        
-        
         fetchAndSetResults()
         
     }
+    
+    func refreshTableView(){
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil)
+    }
+    
+    
+    //MARK: Fetch
     
     func fetchAndSetResults(){
         
@@ -81,6 +88,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
     }
     
+    //MARK: Button Actions
     
     @IBAction func changeCategory(sender: UIButton) {
         
@@ -154,29 +162,19 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     
-    // **************************
-    // ***** CollectionView *****
-    // **************************
-
-
     
+
+    //MARK: CollectionView
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-
         return 1
     }
-    
-    
-    
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return items.count
     }
     
-    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-
-        
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductCell", forIndexPath: indexPath) as? ItemCell_CV {
             
             let item:Item!
@@ -222,12 +220,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
 //    }
 
     
-    func refreshTableView(){
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil)
-    }
-    
-    
+    //MARK: Generate Data
     
     func generateTestData(){
         

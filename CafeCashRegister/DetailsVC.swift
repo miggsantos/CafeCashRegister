@@ -11,6 +11,8 @@ import CoreData
 
 class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate  {
 
+    //MARK: @IBOutlet
+    
     @IBOutlet weak var txt_name: UITextField!
     @IBOutlet weak var txt_price: UITextField!
     @IBOutlet weak var picker_Category: UIPickerView!
@@ -21,6 +23,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var btn_save: UIButton!
     @IBOutlet weak var createEditView: UIView!
     
+    
+    //MARK: Variables
     
     var fetchedResultsController: NSFetchedResultsController!
     
@@ -33,7 +37,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     var editItemImageFlag: Bool = false
     
 
-    
+    //MARK: FUNCS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +59,15 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        itemImage.image = image
+        
+        editItemImageFlag = true
+    }
+    
+    //MARK: Fetchs
     
     func fetchTypes(){
         let fetchRequest = NSFetchRequest(entityName: "ItemType")
@@ -134,15 +147,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         fetchedResultsController = controller
     }
-
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        itemImage.image = image
-        
-        editItemImageFlag = true
-    }
-    
+    //MARK: Buttons Actions
     
     @IBAction func addImage(sender: AnyObject) {
         
@@ -236,6 +242,19 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
         
     }
+
+    @IBAction func cancelPressed(sender: AnyObject) {
+        cleanfields()
+        productListTV.setEditing(false, animated: true)
+    }
+    
+    
+    @IBAction func getDataOnlinePressed(sender: AnyObject) {
+        
+        DataService.instance.processOnlineData()
+        
+    }
+    
     
     func cleanfields(){
         txt_name.text = ""
@@ -245,15 +264,9 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         btn_save.titleLabel?.text = "Guardar"
         createEditView.backgroundColor = UIColor.whiteColor()
     }
-   
-
-    @IBAction func cancelPressed(sender: AnyObject) {
-        cleanfields()
-        productListTV.setEditing(false, animated: true)
-    }
     
     
-    //Pick View
+    //MARK: Pick View
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -272,10 +285,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         print(row)
     }
     
-
     
-    
-    // Table View
+    //MARK: Table View
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        return types[section].type
@@ -390,7 +401,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
     }
     
-    //****** CONTROLLER *******
+    //MARK: CONTROLLER
+    
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         productListTV.beginUpdates()
     }
@@ -449,11 +461,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     
-    @IBAction func getDataOnlinePressed(sender: AnyObject) {
-        
-        DataService.instance.processOnlineData()
 
-    }
     
     /*
     // MARK: - Navigation

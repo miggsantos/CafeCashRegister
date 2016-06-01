@@ -155,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				939264D41CBB14C700118C95 /* old */,
-				93ED66031C9B82220059DA4C /* RigthVC.swift */,
 				93CDAB0B1CB1985D0055B443 /* DetailsVC.swift */,
 				939264BD1CB71E4700118C95 /* MainVC.swift */,
 				939264C31CB8A77E00118C95 /* Main_RightVC.swift */,
@@ -184,6 +183,7 @@
 		939264D41CBB14C700118C95 /* old */ = {
 			isa = PBXGroup;
 			children = (
+				93ED66031C9B82220059DA4C /* RigthVC.swift */,
 				934CB4531BD2BF1F001B735B /* ViewController.swift */,
 			);
 			name = old;
