@@ -8,14 +8,15 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class DataService {
     static let instance = DataService()
     
     var tempTypes = [String]()
-    var tempItems = [[String:String]]()
+    var tempItems = [[String:AnyObject]]()
     
-    let ProductsDataUrl:String = "https://api.myjson.com/bins/z1jq"
+    let ProductsDataUrl:String = "https://dl.dropboxusercontent.com/u/47683883/casadopovo.json"
     
     
     func processOnlineData(){
@@ -90,6 +91,11 @@ class DataService {
         
     }
     
+    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            completion(data: data, response: response, error: error)
+            }.resume()
+    }
     
     func insertProducts(){
         
@@ -98,12 +104,32 @@ class DataService {
             
             autoreleasepool {
                 
+//                for item in self.tempItems {
+//                    let obj = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: context) as! Item
+//                    obj.setValues(item["name"]!,
+//                        price: NSNumber.init(double: Double.init(item["price"]!)!),
+//                        itemType: self.fetchItemType(item["type"]!)! )
+//                }
+                
+                print("items count = \(self.tempTypes.count)")
+                
                 for item in self.tempItems {
                     let obj = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: context) as! Item
-                    obj.setValues(item["name"]!,
-                        price: NSNumber.init(double: Double.init(item["price"]!)!),
-                        itemType: self.fetchItemType(item["type"]!)! )
+                    obj.setValues(item["name"] as! String,
+                        price: NSNumber.init(double: item["price"] as! Double),
+                        itemType: self.fetchItemType((item["type"] as! String))! )
+                    
+                    if let imgUrl = item["url"] as? String where imgUrl != "" {
+                        
+                        let url = NSURL(string: imgUrl)
+                        if let data = NSData(contentsOfURL: url!) {
+                            obj.setItemImage( UIImage(data: data)! )
+                        }
+                    }
+                    
+                    
                 }
+                
             }
             
             // only save once per batch insert
@@ -168,7 +194,7 @@ class DataService {
         do {
             let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
             
-            if let items = json["items"] as? [[String: String]] {
+            if let items = json["items"] as? [[String: AnyObject]] {
                 tempItems = items
             }
         } catch {
