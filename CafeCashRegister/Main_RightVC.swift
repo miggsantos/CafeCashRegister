@@ -28,7 +28,7 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         bagTV.delegate = self
         bagTV.dataSource = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RigthVC.refreshList(_:)),name:"refresh", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Main_RightVC.refreshList(_:)),name:"refresh", object: nil)
         
         
         changeLbl.text = ""

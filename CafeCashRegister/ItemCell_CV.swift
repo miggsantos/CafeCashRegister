@@ -13,11 +13,10 @@ class ItemCell_CV: UICollectionViewCell {
     @IBOutlet weak var thumbImg: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     
+    
     func configureCell(item: Item) {
 
-        
         self.nameLbl.text = item.name
-        //self.thumbImg.image = UIImage(named: "\(self.pokemon.pokedexId)")
         self.thumbImg.image = item.getItemImg()
         
     }

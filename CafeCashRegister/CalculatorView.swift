@@ -46,8 +46,7 @@ class CalculatorView: UIView {
         
         if let calcValue = Double(runningNumber)  {
             
-            //bagItems.append(Product.init( productId: 0,name: "valor manual", price: calcValue, category: Product.Category.TODOS, image: "euro.png" ))
-            addedItems.append(AddedItem(objectId: "" , name: "valor manual", price: calcValue, image: UIImage(named: "cafe.png")! ))
+            addedItems.append(AddedItem(objectId: "" , name: "valor manual", price: calcValue, image: UIImage(named: "euro.png")! ))
             
             refreshTableView()
             

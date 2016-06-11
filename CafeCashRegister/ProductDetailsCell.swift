@@ -22,8 +22,6 @@ class ProductDetailsCell: UITableViewCell {
         self.priceLbl.text = self.item.price!.description
         self.thumbImg.image = self.item.getItemImg()
         
-        //self.thumbImg.image = UIImage(named: "\(self.pokemon.pokedexId)")
-        
     }
 
 }
