@@ -52,6 +52,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
         let context = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Item")
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         do{
             let results = try context.executeFetchRequest(fetchRequest)
@@ -69,6 +71,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
         let context = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Item")
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         if let typeName = type {
         
@@ -91,6 +95,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     //MARK: Button Actions
     
     @IBAction func changeCategory(sender: UIButton) {
+        
+        
+        if(!self.calculatorView.hidden){
+            return;
+        }
         
         print(sender.tag)
         
