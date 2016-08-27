@@ -19,6 +19,18 @@ class DataService {
     let ProductsDataUrl:String = "https://dl.dropboxusercontent.com/u/47683883/casadopovo.json"
     
     
+    func updateProgress(current:Int){
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            let progressData = [ "total": self.tempItems.count, "current":current]
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("updateProgress", object: progressData)
+        
+        })
+        
+
+    }
+    
     func processOnlineData(){
         
         let data = getJSON(ProductsDataUrl) as NSData!
@@ -38,13 +50,25 @@ class DataService {
             print("insertTypes")
             insertTypes()
             print("insertProducts")
-            insertProducts()
+            
+            
+           // dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                self.insertProducts()
+
+           // }
+            
+            
             
             print("done!")
             
+        } else {
+            print("no data found!")
+        
         }
         
     }
+    
+    //MARK: Remove
     
     func removeProducts(){
         let context = appDelegate.managedObjectContext
@@ -91,11 +115,7 @@ class DataService {
         
     }
     
-    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-            completion(data: data, response: response, error: error)
-            }.resume()
-    }
+    //MARK: Insert
     
     func insertProducts(){
         
@@ -104,28 +124,42 @@ class DataService {
             
             autoreleasepool {
                 
-//                for item in self.tempItems {
-//                    let obj = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: context) as! Item
-//                    obj.setValues(item["name"]!,
-//                        price: NSNumber.init(double: Double.init(item["price"]!)!),
-//                        itemType: self.fetchItemType(item["type"]!)! )
-//                }
                 
                 print("items count = \(self.tempTypes.count)")
                 
+                var i:Int = 1
                 for item in self.tempItems {
-                    let obj = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: context) as! Item
-                    obj.setValues(item["name"] as! String,
-                        price: NSNumber.init(double: item["price"] as! Double),
-                        itemType: self.fetchItemType((item["type"] as! String))! )
                     
-                    if let imgUrl = item["url"] as? String where imgUrl != "" {
+
+                    self.updateProgress(i)
+
+                    
+                    let obj = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: context) as! Item
+                    
+                    let name = item["name"]
+                    let price = item["price"]
+                    let type = item["type"]
+                    
+                    if let name = name as? String, let price = price as? Double, let type = type as? String {
+
+                        let itemType = self.fetchItemType(type)
+                        if let itemType = itemType {
                         
-                        let url = NSURL(string: imgUrl)
-                        if let data = NSData(contentsOfURL: url!) {
-                            obj.setItemImage( UIImage(data: data)! )
+                            obj.setValues(name, price: NSNumber.init(double: price), itemType: itemType )
+                            
+                            if let imgUrl = item["url"] as? String where imgUrl != "" {
+                                
+                                let url = NSURL(string: imgUrl)
+                                if let data = NSData(contentsOfURL: url!) {
+                                    obj.setItemImage( UIImage(data: data)! )
+                                } else {
+                                    print("Erro: \(url)")
+                                }
+                            }
+                        
                         }
                     }
+                    i+=1
                     
                     
                 }
@@ -189,6 +223,7 @@ class DataService {
         
     }
     
+    //MARK: get data from json
     
     func getProducts(data:NSData) {
         do {
@@ -215,9 +250,16 @@ class DataService {
         }
     }
     
+    //MARK: get JSON from url
     
     func getJSON(urlToRequest: String) -> NSData?{
         return NSData(contentsOfURL: NSURL(string: urlToRequest)!)
+    }
+    
+    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            completion(data: data, response: response, error: error)
+            }.resume()
     }
     
 }

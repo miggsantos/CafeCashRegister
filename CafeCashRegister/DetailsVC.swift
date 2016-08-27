@@ -22,7 +22,9 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var btn_cancel: UIButton!
     @IBOutlet weak var btn_save: UIButton!
     @IBOutlet weak var createEditView: UIView!
+    @IBOutlet weak var btn_getOnlineData: UIButton!
     
+    @IBOutlet weak var lbl_progress: UILabel!
     
     //MARK: Variables
     
@@ -53,9 +55,13 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         btn_cancel.hidden = true
         
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DetailsVC.updateProgress(_:)),name:"updateProgress", object: nil)
+        
         fetchTypes()
         
         attemptFetch()
+        
         
         
     }
@@ -170,9 +176,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         {
             
             let t = types[picker_Category.selectedRowInComponent(0)]
-            
-            //print(t.type)
-            //print(t.created?.description)
+
             
             let context = appDelegate.managedObjectContext
             
@@ -196,31 +200,13 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                     item.setItemImage(itemImage.image!)
                 }
                 
-            } else {
+            } else { // insert
                 
                 let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: context)!
                 item = Item(entity: entity, insertIntoManagedObjectContext: context)
                 
                 item.setValues(name, price: NSNumber.init(double: Double(price)!), itemType: t)
                 
-/*
-                var img = itemImage.image!
-                var imgData:NSData = UIImagePNGRepresentation(img)!
-                var imgSize:Int = imgData.length
-                var imageSizeInKB = imgSize / 1024
-                print("Size Before=\(imageSizeInKB)")
-                
-                
-                //img = img.resize(0.1)
-                
-                img = img.imageWithSize_AspectFill(CGSize(width: 117, height: 117))
-                    
-                imgData = UIImagePNGRepresentation(img)!
-                imgSize = imgData.length
-                imageSizeInKB = imgSize / 1024
-                
-                print("Size After =\(imageSizeInKB)")
-*/
                 
                 let img = itemImage.image!.imageWithSize_AspectFill(CGSize(width: 117, height: 117))
                 
@@ -230,7 +216,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
             }
             
-
             do {
                 try context.save()
             } catch {
@@ -251,8 +236,44 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     @IBAction func getDataOnlinePressed(sender: AnyObject) {
         
-        DataService.instance.processOnlineData()
+
         
+        let alertView = UIAlertController(title: "Obter dados online", message: "Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
+        alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
+        alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+            
+            self.getOnlineData()
+        }))
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
+        
+        //DataService.instance.processOnlineData()
+        
+    }
+    
+    
+    func getOnlineData(){
+    
+        btn_getOnlineData.hidden = true
+        DataService.instance.processOnlineData()
+        btn_getOnlineData.hidden = false
+    }
+    
+    func updateProgress(notification: NSNotification){
+        
+        if let dict = notification.object as? [String:AnyObject] {
+            
+            let total = dict["total"]
+            let current = dict["current"]
+            
+            if let total = total as? Int, let current = current as? Int {
+                lbl_progress.text = "\(current) de \(total)"
+                
+                //print("updateProgress \(current) de \(total)")
+            }
+
+        }
+
     }
     
     
