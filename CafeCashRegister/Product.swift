@@ -110,40 +110,7 @@ class Product {
         self._category = category
         self._image = image
     }
-    
-    
-    
-//    enum Category: Int{
-//        
-//        case TODOS = 0,
-//        CAFE,
-//        BEBIDAS,
-//        ALCOOL,
-//        COMER,
-//        TABACO
-//        
-//    }
-//    
-//    var Id : Int?
-//    var CategoryId : Category
-//    
-//    var Image : UIImage?
-// 
-//    
-//    var Quantity : Int = 1
-//    
-//    
-//    
-//    init(id:Int, categoryId:Category, name:String, price:Double, imagePath:String) {
-//        
-//        self.Id = id
-//        self.CategoryId = categoryId
-//        self.Name = name
-//        self.Price = price
-//        self.Image = UIImage(named: imagePath)
-//        
-//    }
-    
+
     
     
 }

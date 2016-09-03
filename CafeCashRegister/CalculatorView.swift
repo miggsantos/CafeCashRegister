@@ -51,7 +51,7 @@ class CalculatorView: UIView {
             refreshTableView()
             
             runningNumber = ""
-            calcDisplay.text = "\(EURO) "
+            calcDisplay.text = "0.00\(EURO) "
             
         } else {
             print("not double")

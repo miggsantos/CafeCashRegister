@@ -25,7 +25,6 @@ class DataService {
             let progressData = [ "total": self.tempItems.count, "current":current]
             
             NSNotificationCenter.defaultCenter().postNotificationName("updateProgress", object: progressData)
-        
         })
         
 

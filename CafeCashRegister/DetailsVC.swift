@@ -310,7 +310,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     //MARK: Table View
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return types[section].type
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
             return currentSection.name
@@ -320,12 +319,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
     }
     
-//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let vw = UIView()
-//        vw.backgroundColor = UIColor.lightGrayColor()
-//        
-//        return vw
-//    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections{
@@ -393,11 +386,6 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 
     }
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let alertView = UIAlertController(title: "EDITAR", message: "Quer editar este produto?", preferredStyle: UIAlertControllerStyle.Alert)
-//        alertView.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-//        self.presentViewController(alertView, animated: true, completion: nil)
-//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("ProductDetailsCell", forIndexPath: indexPath) as? ProductDetailsCell {
@@ -481,17 +469,5 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
-    
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

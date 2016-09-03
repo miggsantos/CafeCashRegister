@@ -101,8 +101,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             return;
         }
         
-        print(sender.tag)
-        
         switch sender.tag {
         case 0:
             fetchAndSetResultsByItemType(nil)
@@ -128,29 +126,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         }
         
 
-        
-
-       
-//        dispatch_async(dispatch_get_main_queue(), {
-//        })
-
-//        self.productsCV.collectionViewLayout.invalidateLayout()
-//        self.productsCV.reloadData()
-//        
-
-        
-//        if self.isViewLoaded() && (self.view.window != nil) {
-//            // viewController is visible
-//            self.productsCV.numberOfItemsInSection(0)
-//            self.productsCV?.reloadData()
-//        }
-        
-        
-        
-        self.productsCV.collectionViewLayout.invalidateLayout()
-        
-        self.productsCV.collectionViewLayout.prepareLayout()
-        
         self.productsCV.reloadData()
         
         self.calculatorView.hidden = true
@@ -189,13 +164,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductCell", forIndexPath: indexPath) as? ItemCell_CV {
             
-            //let item:Item!
-            if let item = items[indexPath.row] as? Item {
-                cell.configureCell(item)
-                
-            }
-            
-            
+            cell.configureCell( items[indexPath.row] )
+
             return cell
             
         } else {
@@ -212,10 +182,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
         let item:Item!
         item = items[indexPath.row]
-        
-        //print(item.objectID.URIRepresentation().absoluteString)
 
-        
         if let index = addedItems.indexOf({$0.id == (item.objectID.URIRepresentation().absoluteString) }){
             addedItems[index].quantity += 1
         } else {
@@ -224,17 +191,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
         refreshTableView()
     }
-    
-//    func configureCell(cell: ItemCell_CV, indexPath: NSIndexPath){
-//        
-//        if let item = fetchedResultsController.objectAtIndexPath(indexPath) as? Item {
-//            //update data
-//            cell.configureCell(item)
-//        }
-//        
-//    }
-
-    
 
     
 }

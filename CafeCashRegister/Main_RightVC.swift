@@ -159,7 +159,7 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func showChange(change:Double ){
         
         if (change < 0.0) {
-            changeLbl.text = "Erro - Sem troco!"
+            changeLbl.text = "-----";
         }
         else {
             changeLbl.text = change.description + " \(EURO)"
@@ -183,7 +183,6 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func calculateTotal() -> Double{
         var total = 0.0;
         for addedItem in addedItems{
-            //total += (p.price as  * Double(p.quantity) )
             total += addedItem.price * Double(addedItem.quantity)
         }
         return total

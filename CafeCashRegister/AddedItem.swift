@@ -28,8 +28,6 @@ class AddedItem {
         } else {
             return UIImage(named: "cafe.png")!
         }
-        
-        
     }
     
     var name: String {
