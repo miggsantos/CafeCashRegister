@@ -17,18 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qE-yg-jei">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="25"/>
-                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="MNY-Tr-62I"/>
-                                </constraints>
-                            </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXz-kb-5e6">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem id="5Nz-Pu-rOD">
                                         <barButtonItem key="leftBarButtonItem" title="Voltar" id="958-HF-FB8">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="BYZ-38-t0r" kind="show" id="2jd-JM-FaB"/>
                                             </connections>
@@ -39,6 +34,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wZp-Ec-ooQ">
                                 <rect key="frame" x="20" y="64" width="664" height="684"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProductDetailsCell" rowHeight="70" id="pLS-De-1Ye" customClass="ProductDetailsCell" customModule="CafeCashRegister" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="664" height="70"/>
@@ -48,7 +44,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiy-Au-uuz">
-                                                    <rect key="frame" x="8" y="8" width="648" height="54"/>
+                                                    <rect key="frame" x="0.0" y="8" width="664" height="54"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bxd-bt-44m">
                                                             <rect key="frame" x="8" y="2" width="50" height="50"/>
@@ -90,12 +86,21 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="fiy-Au-uuz" firstAttribute="top" secondItem="oAc-VK-Mww" secondAttribute="topMargin" id="5ps-Um-Ixl"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="fiy-Au-uuz" secondAttribute="trailing" id="Ga4-qH-Oza"/>
+                                                <constraint firstItem="fiy-Au-uuz" firstAttribute="leading" secondItem="oAc-VK-Mww" secondAttribute="leading" id="KiU-bx-5Qs"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fiy-Au-uuz" secondAttribute="bottom" id="MIS-CB-Y1R"/>
+                                                <constraint firstAttribute="trailing" secondItem="fiy-Au-uuz" secondAttribute="trailing" id="fe0-9K-HQS"/>
                                                 <constraint firstItem="fiy-Au-uuz" firstAttribute="leading" secondItem="oAc-VK-Mww" secondAttribute="leadingMargin" id="uo3-qg-soF"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Ga4-qH-Oza"/>
+                                                    <exclude reference="uo3-qg-soF"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLbl" destination="2vA-uK-Nbe" id="Tr5-2k-Kaf"/>
@@ -232,18 +237,15 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.94509803920000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="UOr-ub-NjH" firstAttribute="trailing" secondItem="CaW-5H-6JT" secondAttribute="trailingMargin" id="5Ha-Sc-ruK"/>
-                            <constraint firstItem="5qE-yg-jei" firstAttribute="leading" secondItem="CaW-5H-6JT" secondAttribute="leading" id="Ej2-z8-e8o"/>
                             <constraint firstAttribute="trailing" secondItem="nXz-kb-5e6" secondAttribute="trailing" id="GqN-Ih-9Hi"/>
                             <constraint firstItem="nXz-kb-5e6" firstAttribute="leading" secondItem="CaW-5H-6JT" secondAttribute="leading" id="NGs-5F-hBi"/>
                             <constraint firstItem="nXz-kb-5e6" firstAttribute="top" secondItem="CaW-5H-6JT" secondAttribute="top" id="PTZ-r7-oyd"/>
                             <constraint firstItem="wZp-Ec-ooQ" firstAttribute="leading" secondItem="CaW-5H-6JT" secondAttribute="leadingMargin" id="Wfl-FA-osW"/>
                             <constraint firstItem="obx-Ez-OlD" firstAttribute="top" secondItem="wZp-Ec-ooQ" secondAttribute="bottom" constant="20" id="fvL-K0-yyM"/>
                             <constraint firstItem="UOr-ub-NjH" firstAttribute="top" secondItem="nXz-kb-5e6" secondAttribute="bottom" constant="20" id="gEp-6r-8CA"/>
-                            <constraint firstItem="5qE-yg-jei" firstAttribute="top" secondItem="CaW-5H-6JT" secondAttribute="top" id="gfP-iu-pvB"/>
-                            <constraint firstAttribute="trailing" secondItem="5qE-yg-jei" secondAttribute="trailing" id="kJt-CE-L7Z"/>
                             <constraint firstItem="wZp-Ec-ooQ" firstAttribute="top" secondItem="nXz-kb-5e6" secondAttribute="bottom" constant="20" id="kND-kH-D7W"/>
                             <constraint firstItem="obx-Ez-OlD" firstAttribute="top" secondItem="UOr-ub-NjH" secondAttribute="bottom" constant="20" id="m6m-S6-mnp"/>
                             <constraint firstItem="UOr-ub-NjH" firstAttribute="leading" secondItem="wZp-Ec-ooQ" secondAttribute="trailing" constant="20" id="qtI-iS-6Le"/>

@@ -47,6 +47,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         productListTV.delegate = self
         productListTV.dataSource = self
         
+        productListTV.backgroundColor = .clearColor()
+        
         picker_Category.dataSource = self
         picker_Category.delegate = self
         
@@ -406,6 +408,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         if let item = fetchedResultsController.objectAtIndexPath(indexPath) as? Item {
             //update data
             cell.configureCell(item)
+            cell.setTransparent()
         }
         
     }
