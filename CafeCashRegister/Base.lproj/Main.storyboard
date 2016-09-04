@@ -17,19 +17,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wZp-Ec-ooQ">
-                                <rect key="frame" x="9" y="45" width="681" height="703"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qE-yg-jei">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="25"/>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="MNY-Tr-62I"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXz-kb-5e6">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <items>
+                                    <navigationItem id="5Nz-Pu-rOD">
+                                        <barButtonItem key="leftBarButtonItem" title="Voltar" id="958-HF-FB8">
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" id="2jd-JM-FaB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wZp-Ec-ooQ">
+                                <rect key="frame" x="20" y="64" width="664" height="684"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProductDetailsCell" rowHeight="70" id="pLS-De-1Ye" customClass="ProductDetailsCell" customModule="CafeCashRegister" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="681" height="70"/>
+                                        <rect key="frame" x="0.0" y="28" width="664" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pLS-De-1Ye" id="oAc-VK-Mww">
-                                            <rect key="frame" x="0.0" y="0.0" width="681" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="664" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiy-Au-uuz">
-                                                    <rect key="frame" x="8" y="8" width="665" height="54"/>
+                                                    <rect key="frame" x="8" y="8" width="648" height="54"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bxd-bt-44m">
                                                             <rect key="frame" x="8" y="2" width="50" height="50"/>
@@ -86,149 +105,148 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aj0-N4-U4H" userLabel="CreateEditView">
-                                <rect key="frame" x="704" y="45" width="300" height="503"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UOr-ub-NjH">
+                                <rect key="frame" x="704" y="64" width="300" height="684"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="rw2-Hs-lJE">
-                                        <rect key="frame" x="92" y="30" width="117" height="117"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsg-3K-gwO">
-                                        <rect key="frame" x="92" y="30" width="117" height="117"/>
-                                        <connections>
-                                            <action selector="addImage:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="2iJ-EF-Ia1"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFb-bI-BoK">
-                                        <rect key="frame" x="12" y="176" width="46" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zG4-0J-UHy">
-                                        <rect key="frame" x="66" y="172" width="226" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preço" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QH-kh-tLj">
-                                        <rect key="frame" x="11" y="214" width="45" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WW-pp-sT0">
-                                        <rect key="frame" x="66" y="210" width="226" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvz-8P-QgM">
-                                        <rect key="frame" x="12" y="261" width="280" height="140"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </pickerView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEB-mG-EQo">
-                                        <rect key="frame" x="8" y="414" width="284" height="30"/>
-                                        <color key="backgroundColor" red="0.18039215689999999" green="0.52941176469999995" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" title="Guardar">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="saveProduct:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="el2-Hs-a5f"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hej-gg-1I8">
-                                        <rect key="frame" x="8" y="458" width="284" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Cancelar">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="cancelPressed:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="P79-2u-GDg"/>
-                                            <action selector="saveProduct:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="x8F-x6-LQ1"/>
-                                        </connections>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aj0-N4-U4H" userLabel="CreateEditView">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="493"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="rw2-Hs-lJE">
+                                                <rect key="frame" x="92" y="20" width="117" height="117"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsg-3K-gwO">
+                                                <rect key="frame" x="92" y="20" width="117" height="117"/>
+                                                <connections>
+                                                    <action selector="addImage:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="2iJ-EF-Ia1"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFb-bI-BoK">
+                                                <rect key="frame" x="12" y="166" width="46" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zG4-0J-UHy">
+                                                <rect key="frame" x="66" y="162" width="226" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preço" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QH-kh-tLj">
+                                                <rect key="frame" x="11" y="204" width="45" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WW-pp-sT0">
+                                                <rect key="frame" x="66" y="200" width="226" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvz-8P-QgM">
+                                                <rect key="frame" x="12" y="251" width="280" height="140"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </pickerView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEB-mG-EQo">
+                                                <rect key="frame" x="8" y="404" width="284" height="30"/>
+                                                <color key="backgroundColor" red="0.18039215689999999" green="0.52941176469999995" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="Guardar">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveProduct:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="el2-Hs-a5f"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hej-gg-1I8">
+                                                <rect key="frame" x="8" y="448" width="284" height="30"/>
+                                                <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Cancelar">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="cancelPressed:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="P79-2u-GDg"/>
+                                                    <action selector="saveProduct:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="x8F-x6-LQ1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="7Kj-AV-TeF"/>
+                                            <constraint firstAttribute="height" constant="493" id="tbu-jC-rYB"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="7Kj-AV-TeF"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygC-pL-OcD">
+                                        <rect key="frame" x="0.0" y="501" width="300" height="183"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-UG-w1z">
+                                                <rect key="frame" x="8" y="87" width="284" height="30"/>
+                                                <color key="backgroundColor" red="1" green="0.40695837769999998" blue="0.033196996600000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Obter dados online">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="getDataOnlinePressed:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="xkQ-Fn-uxN"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odQ-yy-zd2">
+                                                <rect key="frame" x="54" y="29" width="180" height="21"/>
+                                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="7Kj-AV-TeF"/>
+                                    <constraint firstAttribute="width" constant="300" id="SVM-5a-dHT"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qE-yg-jei">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="25"/>
-                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="MNY-Tr-62I"/>
-                                </constraints>
-                            </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXz-kb-5e6">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                <items>
-                                    <navigationItem id="5Nz-Pu-rOD">
-                                        <barButtonItem key="leftBarButtonItem" title="Voltar" id="958-HF-FB8">
-                                            <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="2jd-JM-FaB"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygC-pL-OcD">
-                                <rect key="frame" x="704" y="556" width="300" height="204"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-UG-w1z">
-                                        <rect key="frame" x="8" y="87" width="284" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.40695837769999998" blue="0.033196996600000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Obter dados online">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="getDataOnlinePressed:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="xkQ-Fn-uxN"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odQ-yy-zd2">
-                                        <rect key="frame" x="54" y="29" width="180" height="21"/>
-                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="aj0-N4-U4H" firstAttribute="top" secondItem="5qE-yg-jei" secondAttribute="bottom" constant="20" id="CMj-30-M0N"/>
+                            <constraint firstItem="UOr-ub-NjH" firstAttribute="trailing" secondItem="CaW-5H-6JT" secondAttribute="trailingMargin" id="5Ha-Sc-ruK"/>
                             <constraint firstItem="5qE-yg-jei" firstAttribute="leading" secondItem="CaW-5H-6JT" secondAttribute="leading" id="Ej2-z8-e8o"/>
                             <constraint firstAttribute="trailing" secondItem="nXz-kb-5e6" secondAttribute="trailing" id="GqN-Ih-9Hi"/>
-                            <constraint firstItem="aj0-N4-U4H" firstAttribute="trailing" secondItem="CaW-5H-6JT" secondAttribute="trailingMargin" id="LzF-va-3yo"/>
                             <constraint firstItem="nXz-kb-5e6" firstAttribute="leading" secondItem="CaW-5H-6JT" secondAttribute="leading" id="NGs-5F-hBi"/>
                             <constraint firstItem="nXz-kb-5e6" firstAttribute="top" secondItem="CaW-5H-6JT" secondAttribute="top" id="PTZ-r7-oyd"/>
+                            <constraint firstItem="wZp-Ec-ooQ" firstAttribute="leading" secondItem="CaW-5H-6JT" secondAttribute="leadingMargin" id="Wfl-FA-osW"/>
+                            <constraint firstItem="obx-Ez-OlD" firstAttribute="top" secondItem="wZp-Ec-ooQ" secondAttribute="bottom" constant="20" id="fvL-K0-yyM"/>
+                            <constraint firstItem="UOr-ub-NjH" firstAttribute="top" secondItem="nXz-kb-5e6" secondAttribute="bottom" constant="20" id="gEp-6r-8CA"/>
                             <constraint firstItem="5qE-yg-jei" firstAttribute="top" secondItem="CaW-5H-6JT" secondAttribute="top" id="gfP-iu-pvB"/>
                             <constraint firstAttribute="trailing" secondItem="5qE-yg-jei" secondAttribute="trailing" id="kJt-CE-L7Z"/>
-                            <constraint firstItem="obx-Ez-OlD" firstAttribute="top" secondItem="aj0-N4-U4H" secondAttribute="bottom" constant="220" id="wzP-UH-Tip"/>
+                            <constraint firstItem="wZp-Ec-ooQ" firstAttribute="top" secondItem="nXz-kb-5e6" secondAttribute="bottom" constant="20" id="kND-kH-D7W"/>
+                            <constraint firstItem="obx-Ez-OlD" firstAttribute="top" secondItem="UOr-ub-NjH" secondAttribute="bottom" constant="20" id="m6m-S6-mnp"/>
+                            <constraint firstItem="UOr-ub-NjH" firstAttribute="leading" secondItem="wZp-Ec-ooQ" secondAttribute="trailing" constant="20" id="qtI-iS-6Le"/>
                         </constraints>
                     </view>
                     <connections>
