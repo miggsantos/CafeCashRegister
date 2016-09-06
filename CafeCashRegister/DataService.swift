@@ -16,7 +16,7 @@ class DataService {
     var tempTypes = [String]()
     var tempItems = [[String:AnyObject]]()
     
-    let ProductsDataUrl:String = "https://dl.dropboxusercontent.com/u/47683883/casadopovo.json"
+    //let ProductsDataUrl:String = "https://dl.dropboxusercontent.com/u/47683883/casadopovo.json"
     
     
     func updateProgress(current:Int){
@@ -32,7 +32,11 @@ class DataService {
     
     func processOnlineData(){
         
-        let data = getJSON(ProductsDataUrl) as NSData!
+        guard let url = defaults.stringForKey(RemoteDataKeys.dataUrl) where url != "" else {
+            return;
+        }
+        
+        let data = getJSON(url) as NSData!
         
         if data != nil {
             

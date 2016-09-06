@@ -206,7 +206,7 @@
                                         <rect key="frame" x="0.0" y="501" width="300" height="183"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-UG-w1z">
-                                                <rect key="frame" x="8" y="87" width="284" height="30"/>
+                                                <rect key="frame" x="8" y="125" width="284" height="30"/>
                                                 <color key="backgroundColor" red="1" green="0.40695837769999998" blue="0.033196996600000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Obter dados online">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -228,6 +228,19 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqM-pk-8C5">
+                                                <rect key="frame" x="8" y="77" width="284" height="30"/>
+                                                <color key="backgroundColor" red="1" green="0.40695837769999998" blue="0.033196996600000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Configurar localização dos dados">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="OpenPopUpConfig:" destination="1EY-Jo-jQC" eventType="touchUpInside" id="BLm-45-vBm"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -267,6 +280,101 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJ9-mb-fW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-777" y="626"/>
+        </scene>
+        <!--Pop Up Online DataVC-->
+        <scene sceneID="ezj-Pv-7tG">
+            <objects>
+                <viewController storyboardIdentifier="sbPopUpOnlineDataID" id="T3t-Cf-Mw5" customClass="PopUpOnlineDataVC" customModule="CafeCashRegister" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9bn-yd-fPr"/>
+                        <viewControllerLayoutGuide type="bottom" id="yiT-pF-8l8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v79-hI-wt8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILo-3E-8Vj">
+                                <rect key="frame" x="25" y="150" width="550" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Localização dos dados" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKd-1D-fuI">
+                                        <rect key="frame" x="173" y="13" width="200" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4O-s4B">
+                                        <rect key="frame" x="162" y="212" width="100" height="30"/>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.50980392159999999" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Salvar">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Save:" destination="T3t-Cf-Mw5" eventType="touchUpInside" id="y0M-oq-Zjf"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dados" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNn-Od-cZP">
+                                        <rect key="frame" x="14" y="45" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Imagens" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcK-Sf-qL3">
+                                        <rect key="frame" x="14" y="104" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHd-Cy-Ixo">
+                                        <rect key="frame" x="8" y="66" width="530" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uiC-xW-10R">
+                                        <rect key="frame" x="8" y="124" width="530" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60S-iG-0r0">
+                                        <rect key="frame" x="288" y="212" width="100" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Cancelar">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Cancel:" destination="T3t-Cf-Mw5" eventType="touchUpInside" id="awQ-dI-7m9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Xe0-yh-pGg"/>
+                                    <constraint firstAttribute="width" constant="550" id="gae-9b-cpA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ILo-3E-8Vj" firstAttribute="centerX" secondItem="v79-hI-wt8" secondAttribute="centerX" id="l91-QD-Jl5"/>
+                            <constraint firstItem="ILo-3E-8Vj" firstAttribute="centerY" secondItem="v79-hI-wt8" secondAttribute="centerY" id="n9d-bU-Vgg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataUrl" destination="bHd-Cy-Ixo" id="BS9-mA-YW0"/>
+                        <outlet property="imagesUrl" destination="uiC-xW-10R" id="tPW-mg-OWz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d0o-3D-38G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="459" y="575"/>
         </scene>
         <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
@@ -553,7 +661,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaS-Jh-mWo">
-                                                <rect key="frame" x="268" y="0.0" width="73" height="32"/>
+                                                <rect key="frame" x="269" y="0.0" width="73" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Bebidas">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -593,7 +701,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5g-0G-kdD">
-                                                <rect key="frame" x="847" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="848" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="Ntb-Oe-UeO"/>
                                                     <constraint firstAttribute="height" constant="32" id="yNF-Yf-Qbe"/>
@@ -724,7 +832,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="300" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a6L-hy-2FP" id="vqQ-x7-Btm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="69"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe" translatesAutoresizingMaskIntoConstraints="NO" id="p7N-21-IKh">

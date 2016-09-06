@@ -236,6 +236,21 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     
+
+    @IBAction func OpenPopUpConfig(sender: AnyObject) {
+        
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("sbPopUpOnlineDataID") as! PopUpOnlineDataVC
+        
+        self.addChildViewController(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMoveToParentViewController(self)
+        
+        
+        
+    }
+    
+    
     @IBAction func getDataOnlinePressed(sender: AnyObject) {
         
 

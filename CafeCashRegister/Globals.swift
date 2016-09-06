@@ -23,4 +23,6 @@ var addedItems = [AddedItem]()
 
 var activeBillTag = 0
 
+let defaults = NSUserDefaults.standardUserDefaults()
+
 
