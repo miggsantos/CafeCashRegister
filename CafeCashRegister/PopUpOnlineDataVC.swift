@@ -33,7 +33,6 @@ class PopUpOnlineDataVC: UIViewController {
     func getPathFromLocalSorage(){
     
 
-        
         if let dataUrlStored = defaults.stringForKey(RemoteDataKeys.dataUrl) {
             dataUrl.text = dataUrlStored;
         }

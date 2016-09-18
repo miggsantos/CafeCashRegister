@@ -253,9 +253,24 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     @IBAction func getDataOnlinePressed(sender: AnyObject) {
         
-
+        guard let url = defaults.stringForKey(RemoteDataKeys.dataUrl) where url != "" else {
+            
+            
+            let alert = UIAlertController(title: "Configuração em falta", message: "É necessário configurar o url dos dados remotos!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Fechar", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+            return;
+        }
         
-        let alertView = UIAlertController(title: "Obter dados online", message: "Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
+//        if let imagesUrlStored = defaults.stringForKey(RemoteDataKeys.imagesUrl) {
+//            imagesUrl.text = imagesUrlStored
+//        }
+        
+        
+        
+        
+        let alertView = UIAlertController(title: "Obter dados online", message: "Serão obtido os dados remotos. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
         alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
         alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
             
@@ -263,6 +278,19 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }))
         
         self.presentViewController(alertView, animated: true, completion: nil)
+        
+        
+        
+        
+        
+//        let alertView = UIAlertController(title: "Obter dados online", message: "Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
+//        alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
+//        alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+//            
+//            self.getOnlineData()
+//        }))
+//        
+//        self.presentViewController(alertView, animated: true, completion: nil)
         
         //DataService.instance.processOnlineData()
         
@@ -272,9 +300,30 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func getOnlineData(){
     
         btn_getOnlineData.hidden = true
-        DataService.instance.processOnlineData()
+        let result = DataService.instance.processOnlineData()
+        
+        if result.dataExists {
+            let alertView = UIAlertController(title: "Inserir dados remotos", message: "Foram obtidos \(result.typeCount) tipos e \(result.itemsCount) items. Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
+                    alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+            
+                        self.insertOnlineData()
+                    }))
+            
+                    self.presentViewController(alertView, animated: true, completion: nil)
+        }
+        
+        
+        
+    }
+    
+    func insertOnlineData(){
+    
+        DataService.instance.insertOnlineData()
+        
         btn_getOnlineData.hidden = false
     }
+    
     
     func updateProgress(notification: NSNotification){
         
@@ -286,7 +335,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             if let total = total as? Int, let current = current as? Int {
                 lbl_progress.text = "\(current) de \(total)"
                 
-                //print("updateProgress \(current) de \(total)")
+                print("updateProgress \(current) de \(total)")
             }
 
         }

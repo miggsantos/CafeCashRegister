@@ -18,6 +18,23 @@ class DataService {
     
     //let ProductsDataUrl:String = "https://dl.dropboxusercontent.com/u/47683883/casadopovo.json"
     
+    var backgroundThreadContext:NSManagedObjectContext?;
+    
+    
+    func getBackThreadContext() -> NSManagedObjectContext{
+        
+        if backgroundThreadContext == nil{
+        
+            let mainContext = appDelegate.managedObjectContext
+            
+            backgroundThreadContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+            backgroundThreadContext!.persistentStoreCoordinator = mainContext.persistentStoreCoordinator
+            
+        }
+        
+        return backgroundThreadContext!
+    
+    }
     
     func updateProgress(current:Int){
         
@@ -30,51 +47,62 @@ class DataService {
 
     }
     
-    func processOnlineData(){
+    func processOnlineData() -> (dataExists:Bool, typeCount:Int, itemsCount: Int){
+        
+        var dataExists = false
+        var typeCount = 0
+        var itemsCount = 0
+        
         
         guard let url = defaults.stringForKey(RemoteDataKeys.dataUrl) where url != "" else {
-            return;
+            return (dataExists, typeCount , itemsCount)
         }
         
-        let data = getJSON(url) as NSData!
+        guard let data = getJSON(url) as NSData! else {
+            return (dataExists, typeCount , itemsCount)
+        }
+
+        print("getTypes")
+        getTypes(data)
+        print("getProducts")
+        getProducts(data)
+  
+        dataExists = true
+        typeCount = tempTypes.count
+        itemsCount = tempItems.count
         
-        if data != nil {
-            
+        return (dataExists, typeCount , itemsCount)
+    
+    }
+    
+    func insertOnlineData(){
+        
+
+        
             print("removeTypes")
             removeTypes()
             print("removeProducts")
             removeProducts()
             
-            print("getTypes")
-            getTypes(data)
-            print("getProducts")
-            getProducts(data)
-            
+
             print("insertTypes")
             insertTypes()
+        
             print("insertProducts")
-            
-            
-           // dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                self.insertProducts()
+            self.insertProducts()
 
-           // }
-            
-            
             
             print("done!")
             
-        } else {
-            print("no data found!")
-        
-        }
+
         
     }
     
     //MARK: Remove
     
     func removeProducts(){
-        let context = appDelegate.managedObjectContext
+        //let context = appDelegate.managedObjectContext
+        let context = getBackThreadContext()
         let fetchRequest = NSFetchRequest(entityName: "Item")
         
         do{
@@ -97,7 +125,8 @@ class DataService {
     func removeTypes(){
         // Remove the existing items
         
-        let context = appDelegate.managedObjectContext
+        //let context = appDelegate.managedObjectContext
+        let context = getBackThreadContext()
         let fetchRequest = NSFetchRequest(entityName: "ItemType")
         
         do{
@@ -121,8 +150,22 @@ class DataService {
     //MARK: Insert
     
     func insertProducts(){
+        //let appDelegate = UIApplication.sharedApplication().managedObjectContext as NSManagedObjectContext
+     /*
+        let mainContext = appDelegate.managedObjectContext
         
-        let context = appDelegate.managedObjectContext
+        let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        context.persistentStoreCoordinator = mainContext.persistentStoreCoordinator
+       // context.performBlock {
+            // Code in here is now running "in the background" and can safely
+            // do anything in privateContext.
+            // This is where you will create your entities and save them.
+       // }
+        
+*/
+        //let context = appDelegate.managedObjectContext
+        let context = getBackThreadContext()
+
         context.performBlock { // runs asynchronously
             
             autoreleasepool {
@@ -182,7 +225,8 @@ class DataService {
     
     func fetchItemType(type:String?) -> ItemType?{
         
-        let context = appDelegate.managedObjectContext
+        //let context = appDelegate.managedObjectContext
+        let context = getBackThreadContext()
         let fetchRequest = NSFetchRequest(entityName: "ItemType")
         
         if let typeName = type {
@@ -202,7 +246,8 @@ class DataService {
     func insertTypes(){
         
         
-        let context = appDelegate.managedObjectContext
+        //let context = appDelegate.managedObjectContext
+        let context = getBackThreadContext()
         context.performBlock { // runs asynchronously
             
             autoreleasepool {
