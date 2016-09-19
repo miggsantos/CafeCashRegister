@@ -16,7 +16,6 @@ class DataService {
     var tempTypes = [String]()
     var tempItems = [[String:AnyObject]]()
     
-    //let ProductsDataUrl:String = "https://dl.dropboxusercontent.com/u/47683883/casadopovo.json"
     
     var backgroundThreadContext:NSManagedObjectContext?;
     
@@ -101,7 +100,7 @@ class DataService {
     //MARK: Remove
     
     func removeProducts(){
-        //let context = appDelegate.managedObjectContext
+
         let context = getBackThreadContext()
         let fetchRequest = NSFetchRequest(entityName: "Item")
         
@@ -123,9 +122,7 @@ class DataService {
     }
     
     func removeTypes(){
-        // Remove the existing items
-        
-        //let context = appDelegate.managedObjectContext
+
         let context = getBackThreadContext()
         let fetchRequest = NSFetchRequest(entityName: "ItemType")
         
@@ -150,20 +147,7 @@ class DataService {
     //MARK: Insert
     
     func insertProducts(){
-        //let appDelegate = UIApplication.sharedApplication().managedObjectContext as NSManagedObjectContext
-     /*
-        let mainContext = appDelegate.managedObjectContext
-        
-        let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        context.persistentStoreCoordinator = mainContext.persistentStoreCoordinator
-       // context.performBlock {
-            // Code in here is now running "in the background" and can safely
-            // do anything in privateContext.
-            // This is where you will create your entities and save them.
-       // }
-        
-*/
-        //let context = appDelegate.managedObjectContext
+
         let context = getBackThreadContext()
 
         context.performBlock { // runs asynchronously
@@ -225,7 +209,6 @@ class DataService {
     
     func fetchItemType(type:String?) -> ItemType?{
         
-        //let context = appDelegate.managedObjectContext
         let context = getBackThreadContext()
         let fetchRequest = NSFetchRequest(entityName: "ItemType")
         
@@ -245,8 +228,6 @@ class DataService {
     
     func insertTypes(){
         
-        
-        //let context = appDelegate.managedObjectContext
         let context = getBackThreadContext()
         context.performBlock { // runs asynchronously
             

@@ -267,9 +267,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 //            imagesUrl.text = imagesUrlStored
 //        }
         
-        
-        
-        
+
         let alertView = UIAlertController(title: "Obter dados online", message: "Serão obtido os dados remotos. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
         alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
         alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
@@ -278,22 +276,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }))
         
         self.presentViewController(alertView, animated: true, completion: nil)
-        
-        
-        
-        
-        
-//        let alertView = UIAlertController(title: "Obter dados online", message: "Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
-//        alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
-//        alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
-//            
-//            self.getOnlineData()
-//        }))
-//        
-//        self.presentViewController(alertView, animated: true, completion: nil)
-        
-        //DataService.instance.processOnlineData()
-        
+
     }
     
     
@@ -304,7 +287,11 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         if result.dataExists {
             let alertView = UIAlertController(title: "Inserir dados remotos", message: "Foram obtidos \(result.typeCount) tipos e \(result.itemsCount) items. Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
-                    alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
+                    alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) in
+                        
+                        self.btn_getOnlineData.hidden = false
+                    
+                    }))
                     alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
             
                         self.insertOnlineData()
