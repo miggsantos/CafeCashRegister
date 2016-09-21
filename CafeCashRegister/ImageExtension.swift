@@ -17,7 +17,7 @@ extension UIImage {
         imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return result
+        return result!
     }
     func resizeToWidth(width:CGFloat)-> UIImage {
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
@@ -27,7 +27,7 @@ extension UIImage {
         imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return result
+        return result!
     }
     
     func imageWithSize_AspectFit(size:CGSize) -> UIImage
@@ -50,7 +50,7 @@ extension UIImage {
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        return scaledImage;
+        return scaledImage!;
     }
     
     func imageWithSize_AspectFill(size:CGSize) -> UIImage
@@ -73,6 +73,6 @@ extension UIImage {
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        return scaledImage;
+        return scaledImage!;
     }
 }

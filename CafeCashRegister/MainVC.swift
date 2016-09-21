@@ -186,7 +186,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         if let index = addedItems.indexOf({$0.id == (item.objectID.URIRepresentation().absoluteString) }){
             addedItems[index].quantity += 1
         } else {
-            addedItems.append(AddedItem(objectId: (item.objectID.URIRepresentation().absoluteString) , name: item.name!, price: Double(item.price!), image: item.getItemImg()  ))
+            addedItems.append(AddedItem(objectId: (item.objectID.URIRepresentation().absoluteString)! , name: item.name!, price: Double(item.price!), image: item.getItemImg()  ))
         }
         
         refreshTableView()

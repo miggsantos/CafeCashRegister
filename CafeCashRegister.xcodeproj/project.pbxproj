@@ -242,6 +242,7 @@
 					934CB44D1BD2BF1F001B735B = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = E2WXGK793Z;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -422,6 +423,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.miggsantos.CafeCashRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -437,6 +439,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.miggsantos.CafeCashRegister;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
