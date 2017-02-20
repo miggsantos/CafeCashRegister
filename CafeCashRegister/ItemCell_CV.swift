@@ -14,7 +14,7 @@ class ItemCell_CV: UICollectionViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     
     
-    func configureCell(item: Item) {
+    func configureCell(_ item: Item) {
 
         self.nameLbl.text = item.name
         self.thumbImg.image = item.getItemImg()

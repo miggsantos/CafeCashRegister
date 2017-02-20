@@ -13,8 +13,8 @@ import UIKit
 
 class Item: NSManagedObject {
 
-    func setValues(name:String, price:NSNumber, itemType: ItemType ){
-        self.created = NSDate()
+    func setValues(_ name:String, price:NSNumber, itemType: ItemType ){
+        self.created = Date()
         self.name = name
         self.price = price
         self.itemtype = itemType
@@ -22,7 +22,7 @@ class Item: NSManagedObject {
     
     
     
-    func setItemImage(image: UIImage){
+    func setItemImage(_ image: UIImage){
         let data = UIImagePNGRepresentation(image)
         self.image = data
     }
@@ -31,7 +31,7 @@ class Item: NSManagedObject {
         
         if let imageData = self.image {
         
-            let img = UIImage(data: imageData)
+            let img = UIImage(data: imageData as Data)
             return img!
         } else {
         

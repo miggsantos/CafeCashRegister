@@ -11,9 +11,9 @@ import UIKit
 extension UITableViewCell {
     func setTransparent() {
         let bgView: UIView = UIView()
-        bgView.backgroundColor = .clearColor()
+        bgView.backgroundColor = .clear
         
         self.backgroundView = bgView
-        self.backgroundColor = .clearColor()
+        self.backgroundColor = .clear
     }
 }

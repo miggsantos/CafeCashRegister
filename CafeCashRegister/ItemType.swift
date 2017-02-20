@@ -19,8 +19,8 @@ enum Type:String {
 
 class ItemType: NSManagedObject {
 
-    func setValues(type:String){
-        self.created = NSDate()
+    func setValues(_ type:String){
+        self.created = Date()
         self.type = type
     }
 

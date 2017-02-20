@@ -26,7 +26,7 @@ class DataService {
         
             let mainContext = appDelegate.managedObjectContext
             
-            backgroundThreadContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+            backgroundThreadContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
             backgroundThreadContext!.persistentStoreCoordinator = mainContext.persistentStoreCoordinator
             
         }
@@ -35,12 +35,12 @@ class DataService {
     
     }
     
-    func updateProgress(current:Int){
+    func updateProgress(_ current:Int){
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             let progressData = [ "total": self.tempItems.count, "current":current]
             
-            NSNotificationCenter.defaultCenter().postNotificationName("updateProgress", object: progressData)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgress"), object: progressData)
         })
         
 
@@ -53,11 +53,11 @@ class DataService {
         var itemsCount = 0
         
         
-        guard let url = defaults.stringForKey(RemoteDataKeys.dataUrl) where url != "" else {
+        guard let url = defaults.string(forKey: RemoteDataKeys.dataUrl), url != "" else {
             return (dataExists, typeCount , itemsCount)
         }
         
-        guard let data = getJSON(url) as NSData! else {
+        guard let data = getJSON(url) as Data! else {
             return (dataExists, typeCount , itemsCount)
         }
 
@@ -102,15 +102,15 @@ class DataService {
     func removeProducts(){
 
         let context = getBackThreadContext()
-        let fetchRequest = NSFetchRequest(entityName: "Item")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
         
         do{
-            let result = try context.executeFetchRequest(fetchRequest)
+            let result = try context.fetch(fetchRequest)
             
             if let items = result as? [Item] {
                 
                 for item in items {
-                    context.deleteObject(item)
+                    context.delete(item)
                 }
             }
             
@@ -124,15 +124,15 @@ class DataService {
     func removeTypes(){
 
         let context = getBackThreadContext()
-        let fetchRequest = NSFetchRequest(entityName: "ItemType")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemType")
         
         do{
-            let result = try context.executeFetchRequest(fetchRequest)
+            let result = try context.fetch(fetchRequest)
             
             if let types = result as? [ItemType] {
                 
                 for type in types {
-                    context.deleteObject(type)
+                    context.delete(type)
                 }
             }
             
@@ -150,7 +150,7 @@ class DataService {
 
         let context = getBackThreadContext()
 
-        context.performBlock { // runs asynchronously
+        context.perform { // runs asynchronously
             
             autoreleasepool {
                 
@@ -164,7 +164,7 @@ class DataService {
                     self.updateProgress(i)
 
                     
-                    let obj = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: context) as! Item
+                    let obj = NSEntityDescription.insertNewObject(forEntityName: "Item", into: context) as! Item
                     
                     let name = item["name"]
                     let price = item["price"]
@@ -175,12 +175,12 @@ class DataService {
                         let itemType = self.fetchItemType(type)
                         if let itemType = itemType {
                         
-                            obj.setValues(name, price: NSNumber.init(double: price), itemType: itemType )
+                            obj.setValues(name, price: NSNumber.init(value: price as Double), itemType: itemType )
                             
-                            if let imgUrl = item["url"] as? String where imgUrl != "" {
+                            if let imgUrl = item["url"] as? String, imgUrl != "" {
                                 
-                                let url = NSURL(string: imgUrl)
-                                if let data = NSData(contentsOfURL: url!) {
+                                let url = URL(string: imgUrl)
+                                if let data = try? Data(contentsOf: url!) {
                                     obj.setItemImage( UIImage(data: data)! )
                                 } else {
                                     print("Erro: \(url)")
@@ -207,10 +207,10 @@ class DataService {
         }
     }
     
-    func fetchItemType(type:String?) -> ItemType?{
+    func fetchItemType(_ type:String?) -> ItemType?{
         
         let context = getBackThreadContext()
-        let fetchRequest = NSFetchRequest(entityName: "ItemType")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemType")
         
         if let typeName = type {
             let predicate = NSPredicate(format: "type = %@", typeName )
@@ -218,7 +218,7 @@ class DataService {
         }
         
         do{
-            let result = try context.executeFetchRequest(fetchRequest)
+            let result = try context.fetch(fetchRequest)
             return result[0] as? ItemType
         } catch let err as NSError {
             print(err.debugDescription)
@@ -229,12 +229,12 @@ class DataService {
     func insertTypes(){
         
         let context = getBackThreadContext()
-        context.performBlock { // runs asynchronously
+        context.perform { // runs asynchronously
             
             autoreleasepool {
                 
                 for type in self.tempTypes {
-                    let obj = NSEntityDescription.insertNewObjectForEntityForName("ItemType", inManagedObjectContext: context) as! ItemType
+                    let obj = NSEntityDescription.insertNewObject(forEntityName: "ItemType", into: context) as! ItemType
                     obj.setValues(type)
                 }
             }
@@ -254,25 +254,23 @@ class DataService {
     
     //MARK: get data from json
     
-    func getProducts(data:NSData) {
+    func getProducts(_ data:Data) {
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            
-            if let items = json["items"] as? [[String: AnyObject]] {
-                tempItems = items
+            if let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]
+            {
+                tempItems = json["items"] as! [[String : AnyObject]] 
             }
-        } catch {
+        } catch let error {
             print("getProducts - error serializing JSON: \(error)")
         }
     }
     
     
-    func getTypes(data:NSData) {
+    func getTypes(_ data:Data) {
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            
-            if let types = json["types"] as? [String] {
-                tempTypes = types
+            if let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]
+            {
+                tempTypes = json["types"] as! [String]
             }
         } catch {
             print("getTypes - error serializing JSON: \(error)")
@@ -281,14 +279,15 @@ class DataService {
     
     //MARK: get JSON from url
     
-    func getJSON(urlToRequest: String) -> NSData?{
-        return NSData(contentsOfURL: NSURL(string: urlToRequest)!)
+    func getJSON(_ urlToRequest: String) -> Data?{
+        return (try? Data(contentsOf: URL(string: urlToRequest)!))
     }
     
-    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-            completion(data: data, response: response, error: error)
-            }.resume()
+    func getDataFromUrl(_ url:URLRequest, completion: @escaping ((_ data: Data?, _ response: URLResponse?, _ error: Error? ) -> Void)) {
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            completion(data, response, error)
+            }) .resume()
     }
     
 }

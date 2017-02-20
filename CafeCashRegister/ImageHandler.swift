@@ -11,17 +11,17 @@ import UIKit
 
 class ImageHandler {
 
-    func saveImage (image: UIImage, path: String ) -> Bool{
+    func saveImage (_ image: UIImage, path: String ) -> Bool{
         
         let pngImageData = UIImagePNGRepresentation(image)
         //let jpgImageData = UIImageJPEGRepresentation(image, 1.0)   // if you want to save as JPEG
-        let result = pngImageData!.writeToFile(path, atomically: true)
+        let result = (try? pngImageData!.write(to: URL(fileURLWithPath: path), options: [.atomic])) != nil
         
         return result
         
     }
     
-    func loadImageFromPath(path: String) -> UIImage? {
+    func loadImageFromPath(_ path: String) -> UIImage? {
         
         let image = UIImage(contentsOfFile: path)
         

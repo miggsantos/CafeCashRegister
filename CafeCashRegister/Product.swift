@@ -13,27 +13,27 @@ class Product {
     
     enum Category: Int{
     
-        case TODOS = 0,
-        CAFE,
-        BEBIDAS,
-        ALCOOL,
-        COMER,
-        TABACO
+        case todos = 0,
+        cafe,
+        bebidas,
+        alcool,
+        comer,
+        tabaco
     }
     
     
-    private var _productId:Int!
-    private var _name:String!
-    private var _price:Double!
-    private var _image:String!
-    private var _quantity:Int!
-    private var _category:Category!
+    fileprivate var _productId:Int!
+    fileprivate var _name:String!
+    fileprivate var _price:Double!
+    fileprivate var _image:String!
+    fileprivate var _quantity:Int!
+    fileprivate var _category:Category!
     
     var productId: Int {
         return _productId
     }
     var name: String {
-        get{ return _name.capitalizedString }
+        get{ return _name.capitalized }
         set{ _name = newValue }
         
     }
@@ -43,10 +43,10 @@ class Product {
         
         if(quantity > 1) {
         
-            return _name.capitalizedString + " \(quantity)x"
+            return _name.capitalized + " \(quantity)x"
         }
         else {
-            return _name.capitalizedString
+            return _name.capitalized
         
         }
     }

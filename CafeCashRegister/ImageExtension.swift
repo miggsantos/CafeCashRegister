@@ -9,28 +9,28 @@
 import UIKit
 
 extension UIImage {
-    func resize(scale:CGFloat)-> UIImage {
+    func resize(_ scale:CGFloat)-> UIImage {
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: size.width*scale, height: size.height*scale)))
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         imageView.image = self
         UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
-        imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return result!
     }
-    func resizeToWidth(width:CGFloat)-> UIImage {
+    func resizeToWidth(_ width:CGFloat)-> UIImage {
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         imageView.image = self
         UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
-        imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return result!
     }
     
-    func imageWithSize_AspectFit(size:CGSize) -> UIImage
+    func imageWithSize_AspectFit(_ size:CGSize) -> UIImage
     {
         var scaledImageRect = CGRect.zero;
         
@@ -45,7 +45,7 @@ extension UIImage {
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0);
         
-        self.drawInRect(scaledImageRect);
+        self.draw(in: scaledImageRect);
         
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
@@ -53,7 +53,7 @@ extension UIImage {
         return scaledImage!;
     }
     
-    func imageWithSize_AspectFill(size:CGSize) -> UIImage
+    func imageWithSize_AspectFill(_ size:CGSize) -> UIImage
     {
         var scaledImageRect = CGRect.zero;
         
@@ -68,7 +68,7 @@ extension UIImage {
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0);
         
-        self.drawInRect(scaledImageRect);
+        self.draw(in: scaledImageRect);
         
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();

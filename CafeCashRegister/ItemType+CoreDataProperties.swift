@@ -15,7 +15,7 @@ import CoreData
 extension ItemType {
 
     @NSManaged var type: String?
-    @NSManaged var created: NSDate?
+    @NSManaged var created: Date?
     @NSManaged var item: NSSet?
 
 }

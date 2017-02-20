@@ -8,15 +8,15 @@
 
 import UIKit
 
-func getDocumentsURL() -> NSURL {
-    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+func getDocumentsURL() -> URL {
+    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     return documentsURL
 }
 
-func fileInDocumentsDirectory(filename: String) -> String {
+func fileInDocumentsDirectory(_ filename: String) -> String {
     
-    let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-    return fileURL!.path!
+    let fileURL = getDocumentsURL().appendingPathComponent(filename)
+    return fileURL.path
     
 }
 
