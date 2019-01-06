@@ -14,7 +14,9 @@ It was built and used in a small cafe business.
 
 ### Tech ###
 
-Was built using Swift and CoreData to store the products information and images localy in the device
+Was built using Swift and CoreData to store the products information and images localy in the device.
+
+The products are first loaded via the backend where the user can suply a .json url location with all the products data and image urls.
 
 ### How to use ###
 
@@ -30,7 +32,7 @@ For the app to work:
 * Return to the main screen and the products should be loaded
 
 
-### .json products file formate ###
+### .json products file format ###
 You just have to add the types and then the items like below:
 
 {
