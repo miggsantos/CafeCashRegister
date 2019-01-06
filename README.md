@@ -2,7 +2,13 @@
 
 The cash register app!
 
+It was built and used in a small cafe business.
+
+* Main sreen
+
 ![](cash_register_screen.gif)
+
+* Backend screen
 
 ![](cash_register_backend.gif)
 
