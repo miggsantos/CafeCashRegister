@@ -4,7 +4,7 @@ The cash register app!
 
 It was built and used in a small cafe business.
 
-* Main sreen
+* Main screen
 
 ![](cash_register_screen.gif)
 
@@ -14,9 +14,7 @@ It was built and used in a small cafe business.
 
 ### Tech ###
 
-Was built using swift, with the following libraries:
-
-* CoreData - to store the products information and images localy in the device
+Was built using Swift and CoreData to store the products information and images localy in the device
 
 ### How to use ###
 
