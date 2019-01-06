@@ -16,7 +16,7 @@ class ProductDetailsCell: UITableViewCell {
     
     var item: Item!
     
-    func configureCell(item: Item) {
+    func configureCell(_ item: Item) {
         self.item = item
         self.nameLbl.text = self.item.name
         self.priceLbl.text = self.item.price!.description

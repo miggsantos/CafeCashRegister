@@ -12,11 +12,11 @@ import UIKit
 
 class AddedItem {
     
-    private var _id:String!
-    private var _name:String!
-    private var _price:Double!
-    private var _quantity:Int!
-    private var _image:UIImage!
+    fileprivate var _id:String!
+    fileprivate var _name:String!
+    fileprivate var _price:Double!
+    fileprivate var _quantity:Int!
+    fileprivate var _image:UIImage!
     
     var id: String {
         return _id
@@ -31,7 +31,7 @@ class AddedItem {
     }
     
     var name: String {
-        get{ return _name.capitalizedString }
+        get{ return _name.capitalized }
         set{ _name = newValue }
     }
     
@@ -47,7 +47,7 @@ class AddedItem {
     
 
     var priceWithCurrency: String {
-        return "\(self._price) \(EURO)"
+        return "\(self.price) \(EURO)"
     }
     
     var quantity: Int {
@@ -64,10 +64,10 @@ class AddedItem {
         
         if(quantity > 1) {
             
-            return _name.capitalizedString + " \(quantity)x"
+            return _name.capitalized + " \(quantity)x"
         }
         else {
-            return _name.capitalizedString
+            return _name.capitalized
             
         }
     }

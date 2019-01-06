@@ -20,11 +20,11 @@ class CalculatorView: UIView {
     }
     
     
-    @IBAction func numberPressed(sender: UIButton) {
+    @IBAction func numberPressed(_ sender: UIButton) {
         
         if(sender.tag == -1){
             
-            if !runningNumber.containsString(".") {
+            if !runningNumber.contains(".") {
                 runningNumber += "."
             }
             
@@ -36,13 +36,13 @@ class CalculatorView: UIView {
         
     }
     
-    @IBAction func backspacePressed(sender: AnyObject) {
+    @IBAction func backspacePressed(_ sender: AnyObject) {
         
         runningNumber = String(runningNumber.characters.dropLast())
         calcDisplay.text = "\(runningNumber) \(EURO) "
     }
     
-    @IBAction func addPressed(sender: AnyObject) {
+    @IBAction func addPressed(_ sender: AnyObject) {
         
         if let calcValue = Double(runningNumber)  {
             
@@ -61,7 +61,7 @@ class CalculatorView: UIView {
     
     func refreshTableView(){
         
-        NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "refresh"), object: nil)
     }
 
 }

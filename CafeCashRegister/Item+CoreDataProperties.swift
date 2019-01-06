@@ -14,10 +14,10 @@ import CoreData
 
 extension Item {
 
-    @NSManaged var image: NSData?
+    @NSManaged var image: Data?
     @NSManaged var name: String?
     @NSManaged var price: NSNumber?
-    @NSManaged var created: NSDate?
+    @NSManaged var created: Date?
     @NSManaged var itemtype: ItemType?
 
 }

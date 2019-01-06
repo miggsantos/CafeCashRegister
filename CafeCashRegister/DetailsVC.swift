@@ -28,7 +28,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     //MARK: Variables
     
-    var fetchedResultsController: NSFetchedResultsController!
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
     var imagePicker: UIImagePickerController!
     
@@ -47,16 +47,18 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         productListTV.delegate = self
         productListTV.dataSource = self
         
+        productListTV.backgroundColor = .clear
+        
         picker_Category.dataSource = self
         picker_Category.delegate = self
         
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        btn_cancel.hidden = true
+        btn_cancel.isHidden = true
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DetailsVC.updateProgress(_:)),name:"updateProgress", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(DetailsVC.updateProgress(_:)),name:NSNotification.Name(rawValue: "updateProgress"), object: nil)
         
         fetchTypes()
         
@@ -66,8 +68,8 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        imagePicker.dismiss(animated: true, completion: nil)
         itemImage.image = image
         
         editItemImageFlag = true
@@ -76,11 +78,11 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     //MARK: Fetchs
     
     func fetchTypes(){
-        let fetchRequest = NSFetchRequest(entityName: "ItemType")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemType")
         
         do {
             
-            self.types = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [ItemType]
+            self.types = try appDelegate.managedObjectContext.fetch(fetchRequest) as! [ItemType]
             self.picker_Category.reloadAllComponents()
             
         } catch {
@@ -111,16 +113,16 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         let section : String? =  "itemtype.type"
         
-        let fetchRequest = NSFetchRequest(entityName: "Item")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
         fetchRequest.propertiesToGroupBy = ["itemtype.type"]
-        fetchRequest.resultType = .DictionaryResultType
+        fetchRequest.resultType = .dictionaryResultType
         
         
         var expressionDescriptions = [AnyObject]()
         //expressionDescriptions.append("created")
-        expressionDescriptions.append("name")
-        expressionDescriptions.append("price")
-        expressionDescriptions.append("image")
+        expressionDescriptions.append("name" as AnyObject)
+        expressionDescriptions.append("price" as AnyObject)
+        expressionDescriptions.append("image" as AnyObject)
         
         
         let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
@@ -140,7 +142,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         //let section : String? = segment.selectedSegmentIndex == 1 ? "store.name" : nil
         
         let section : String? =  "itemtype.type"
-        let fetchRequest = NSFetchRequest(entityName: "Item")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
         let sortDescriptor = NSSortDescriptor(key: "itemtype.type", ascending: true)
         //let sortDescriptor2 = NSSortDescriptor(key: "itemtype.created", ascending: true)
         let sortDescriptor3 = NSSortDescriptor(key: "created", ascending: true)
@@ -156,26 +158,26 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     //MARK: Buttons Actions
     
-    @IBAction func addImage(sender: AnyObject) {
+    @IBAction func addImage(_ sender: AnyObject) {
         
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        imagePicker.modalPresentationStyle = UIModalPresentationStyle.Popover
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.modalPresentationStyle = UIModalPresentationStyle.popover
  
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        self.present(imagePicker, animated: true, completion: nil)
         
         let popper = imagePicker.popoverPresentationController
         popper?.sourceView = self.view
         
     }
     
-    @IBAction func saveProduct(sender: AnyObject) {
+    @IBAction func saveProduct(_ sender: AnyObject) {
 
         
-        if let name = txt_name.text where name != "",
-           let price = txt_price.text where price != ""
+        if let name = txt_name.text, name != "",
+           let price = txt_price.text, price != ""
         {
             
-            let t = types[picker_Category.selectedRowInComponent(0)]
+            let t = types[picker_Category.selectedRow(inComponent: 0)]
 
             
             let context = appDelegate.managedObjectContext
@@ -188,7 +190,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 editItemFlag = false
                 
                 item = editItem!
-                item.setValues(name, price: NSNumber.init(double: Double(price)!), itemType: t)
+                item.setValues(name, price: NSNumber.init(value: Double(price)! as Double), itemType: t)
                 
                 if editItemImageFlag {
                     editItemImageFlag = false
@@ -202,17 +204,17 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 
             } else { // insert
                 
-                let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: context)!
-                item = Item(entity: entity, insertIntoManagedObjectContext: context)
+                let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
+                item = Item(entity: entity, insertInto: context)
                 
-                item.setValues(name, price: NSNumber.init(double: Double(price)!), itemType: t)
+                item.setValues(name, price: NSNumber.init(value: Double(price)! as Double), itemType: t)
                 
                 
                 let img = itemImage.image!.imageWithSize_AspectFill(CGSize(width: 117, height: 117))
                 
                 item.setItemImage(img)
                 
-                context.insertObject(item)
+                context.insert(item)
             
             }
             
@@ -228,38 +230,89 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
     }
 
-    @IBAction func cancelPressed(sender: AnyObject) {
+    @IBAction func cancelPressed(_ sender: AnyObject) {
         cleanfields()
         productListTV.setEditing(false, animated: true)
     }
     
     
-    @IBAction func getDataOnlinePressed(sender: AnyObject) {
+
+    @IBAction func OpenPopUpConfig(_ sender: AnyObject) {
+        
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpOnlineDataID") as! PopUpOnlineDataVC
+        
+        self.addChildViewController(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParentViewController: self)
+        
+        
+        
+    }
+    
+    
+    @IBAction func getDataOnlinePressed(_ sender: AnyObject) {
+        
+        guard let url = defaults.string(forKey: RemoteDataKeys.dataUrl), url != "" else {
+            
+            
+            let alert = UIAlertController(title: "Configuração em falta", message: "É necessário configurar o url dos dados remotos!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Fechar", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+            return;
+        }
+        
+//        if let imagesUrlStored = defaults.stringForKey(RemoteDataKeys.imagesUrl) {
+//            imagesUrl.text = imagesUrlStored
+//        }
         
 
-        
-        let alertView = UIAlertController(title: "Obter dados online", message: "Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.Alert)
-        alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.Cancel, handler: nil))
-        alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+        let alertView = UIAlertController(title: "Obter dados online", message: "Serão obtido os dados remotos. Quer continuar?", preferredStyle: UIAlertControllerStyle.alert)
+        alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.cancel, handler: nil))
+        alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
             
             self.getOnlineData()
         }))
         
-        self.presentViewController(alertView, animated: true, completion: nil)
-        
-        //DataService.instance.processOnlineData()
-        
+        self.present(alertView, animated: true, completion: nil)
+
     }
     
     
     func getOnlineData(){
     
-        btn_getOnlineData.hidden = true
-        DataService.instance.processOnlineData()
-        btn_getOnlineData.hidden = false
+        btn_getOnlineData.isHidden = true
+        let result = DataService.instance.processOnlineData()
+        
+        if result.dataExists {
+            let alertView = UIAlertController(title: "Inserir dados remotos", message: "Foram obtidos \(result.typeCount) tipos e \(result.itemsCount) items. Todos os dados serão eliminados e substituidos pelas infomação online. Quer continuar?", preferredStyle: UIAlertControllerStyle.alert)
+                    alertView.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.cancel, handler: { (action: UIAlertAction!) in
+                        
+                        self.btn_getOnlineData.isHidden = false
+                    
+                    }))
+                    alertView.addAction(UIAlertAction(title: "Sim", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+            
+                        self.insertOnlineData()
+                    }))
+            
+                    self.present(alertView, animated: true, completion: nil)
+        }
+        
+        
+        
     }
     
-    func updateProgress(notification: NSNotification){
+    func insertOnlineData(){
+    
+        DataService.instance.insertOnlineData()
+        
+        btn_getOnlineData.isHidden = false
+    }
+    
+    
+    func updateProgress(_ notification: Notification){
         
         if let dict = notification.object as? [String:AnyObject] {
             
@@ -269,7 +322,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             if let total = total as? Int, let current = current as? Int {
                 lbl_progress.text = "\(current) de \(total)"
                 
-                //print("updateProgress \(current) de \(total)")
+                print("updateProgress \(current) de \(total)")
             }
 
         }
@@ -281,35 +334,35 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         txt_name.text = ""
         txt_price.text = ""
         itemImage.image = UIImage(named: "add.png")
-        btn_cancel.hidden = true
+        btn_cancel.isHidden = true
         btn_save.titleLabel?.text = "Guardar"
-        createEditView.backgroundColor = UIColor.whiteColor()
+        createEditView.backgroundColor = UIColor.white
     }
     
     
     //MARK: Pick View
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return types.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let itemtype = types[row]
         return itemtype.type
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(row)
     }
     
     
     //MARK: Table View
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
             return currentSection.name
@@ -320,7 +373,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections{
             return sections.count
         }
@@ -328,7 +381,7 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         return 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
@@ -338,12 +391,12 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         return 0
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .Destructive, title: "Apagar") { action, index in
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .default, title: "Apagar") { action, index in
             
-            let managedObject:NSManagedObject = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
+            let managedObject:NSManagedObject = self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
             let context = appDelegate.managedObjectContext
-            context.deleteObject(managedObject)
+            context.delete(managedObject)
             do {
                 try context.save()
             } catch {
@@ -353,42 +406,42 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
         }
 
-        let edit = UITableViewRowAction(style: .Normal, title: "Editar") { action, index in
-            let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+        let edit = UITableViewRowAction(style: .normal, title: "Editar") { action, index in
+            let item = self.fetchedResultsController.object(at: indexPath) as! Item
             self.txt_price.text = "\(item.price!)"
             self.txt_name.text = item.name
             self.itemImage.image = item.getItemImg()
             
             
-            if let row = self.types.indexOf(item.itemtype!) {
+            if let row = self.types.index(of: item.itemtype!) {
                 self.picker_Category.selectRow(row, inComponent: 0, animated: false)
             }
             
             self.editItemFlag = true
             self.editItem = item
-            self.btn_cancel.hidden = false
+            self.btn_cancel.isHidden = false
             self.btn_save.titleLabel?.text = "Guardar Alterações"
-            self.createEditView.backgroundColor = UIColor.lightGrayColor()
+            self.createEditView.backgroundColor = UIColor.lightGray
             
             
         }
-        edit.backgroundColor = UIColor.lightGrayColor()
+        edit.backgroundColor = UIColor.lightGray
 
         return [edit, delete]
     }
     
 
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("ProductDetailsCell", forIndexPath: indexPath) as? ProductDetailsCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsCell", for: indexPath) as? ProductDetailsCell {
             
             configureCell(cell, indexPath: indexPath)
             
@@ -401,67 +454,68 @@ class DetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     
-    func configureCell(cell: ProductDetailsCell, indexPath: NSIndexPath){
+    func configureCell(_ cell: ProductDetailsCell, indexPath: IndexPath){
         
-        if let item = fetchedResultsController.objectAtIndexPath(indexPath) as? Item {
+        if let item = fetchedResultsController.object(at: indexPath) as? Item {
             //update data
             cell.configureCell(item)
+            cell.setTransparent()
         }
         
     }
     
     //MARK: CONTROLLER
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         productListTV.beginUpdates()
     }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         productListTV.endUpdates()
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         switch type {
-        case .Insert:
-            productListTV.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
-        case .Delete:
-            productListTV.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .insert:
+            productListTV.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
+        case .delete:
+            productListTV.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
         default: break
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         switch type {
-        case .Insert:
+        case .insert:
             if let indexPath = newIndexPath {
                 
-                productListTV.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                productListTV.insertRows(at: [indexPath], with: .fade)
             }
             break
-        case .Delete:
+        case .delete:
             if let indexPath = indexPath {
                 
-                productListTV.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                productListTV.deleteRows(at: [indexPath], with: .fade)
             }
             break
             
-        case .Update:
+        case .update:
             if let indexPath = indexPath {
                 
-                let cell = productListTV.cellForRowAtIndexPath(indexPath) as! ProductDetailsCell
+                let cell = productListTV.cellForRow(at: indexPath) as! ProductDetailsCell
                 configureCell(cell, indexPath: indexPath)
             }
             break
             
-        case .Move:
+        case .move:
             if let indexPath = indexPath {
-                productListTV.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                productListTV.deleteRows(at: [indexPath], with: .fade)
             }
             
             if let newIndexPath = newIndexPath {
                 
-                productListTV.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+                productListTV.insertRows(at: [newIndexPath], with: .fade)
             }
             
             break

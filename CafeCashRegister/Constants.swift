@@ -15,3 +15,9 @@ let EURO = " € "
 
 let activeBillColor = UIColor(red: 36/255, green: 131/255, blue: 192/255, alpha: 255)
 let notActiveBillColor = UIColor(red: 46/255, green: 174/255, blue: 255/255, alpha: 255)
+
+
+struct RemoteDataKeys {
+    static let dataUrl = "CCR_DATA_URL"
+    static let imagesUrl = "CCR_IMAGES_URL"
+}

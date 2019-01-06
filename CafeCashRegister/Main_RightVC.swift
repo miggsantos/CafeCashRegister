@@ -28,14 +28,14 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         bagTV.delegate = self
         bagTV.dataSource = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Main_RightVC.refreshList(_:)),name:"refresh", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Main_RightVC.refreshList(_:)),name:NSNotification.Name(rawValue: "refresh"), object: nil)
         
         
         changeLbl.text = ""
         resetBillButtons()
     }
     
-    func refreshList(notification: NSNotification){
+    func refreshList(_ notification: Notification){
         //load data here
         self.bagTV.reloadData()
         showTotal()
@@ -45,17 +45,17 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     //MARK: TableView
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addedItems.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCellWithIdentifier("BagItemCell", forIndexPath: indexPath) as? Item_Main_TVCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "BagItemCell", for: indexPath) as? Item_Main_TVCell {
             
             cell.configureCell(addedItems[indexPath.row])
             return cell
@@ -68,15 +68,15 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             
-            addedItems.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            addedItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             showTotal()
             
         }
@@ -85,7 +85,7 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     //MARK: Buttons Actions
     
-    @IBAction func getChange(sender: UIButton) {
+    @IBAction func getChange(_ sender: UIButton) {
         
         let total:Double = calculateTotal()
         
@@ -98,9 +98,9 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         showChange( calculateChange(total) )
     }
     
-    @IBAction func cleanBag(sender: AnyObject) {
+    @IBAction func cleanBag(_ sender: AnyObject) {
         
-        addedItems.removeAll(keepCapacity: false)
+        addedItems.removeAll(keepingCapacity: false)
         totalLbl.text = "Total: 0.0 \(EURO)";
         
         
@@ -122,7 +122,7 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
-    func calculateChange(total:Double ) -> Double{
+    func calculateChange(_ total:Double ) -> Double{
         
         resetBillButtons()
         
@@ -156,7 +156,7 @@ class Main_RightVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return change
     }
     
-    func showChange(change:Double ){
+    func showChange(_ change:Double ){
         
         if (change < 0.0) {
             changeLbl.text = "-----";

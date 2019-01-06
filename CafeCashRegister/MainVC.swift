@@ -19,7 +19,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     //MARK: Vars
     
     var items = [Item]()
-    var fetchedResultsController: NSFetchedResultsController!
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
     //MARK: Funcs
     
@@ -30,8 +30,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         productsCV.dataSource = self
         
         
-        calculatorView.hidden = true
-        productsCV.hidden = false
+        calculatorView.isHidden = true
+        productsCV.isHidden = false
         
         //generateItemTypes()
         //generateTestData()
@@ -42,7 +42,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     func refreshTableView(){
         
-        NSNotificationCenter.defaultCenter().postNotificationName("refresh", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "refresh"), object: nil)
     }
     
     
@@ -51,12 +51,12 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func fetchAndSetResults(){
         
         let context = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "Item")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
         let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         do{
-            let results = try context.executeFetchRequest(fetchRequest)
+            let results = try context.fetch(fetchRequest)
             self.items = results as! [Item]
         } catch let err as NSError {
             print(err.debugDescription)
@@ -65,12 +65,12 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
 
     }
     
-    func fetchAndSetResultsByItemType(type:String?){
+    func fetchAndSetResultsByItemType(_ type:String?){
         
 
         
         let context = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "Item")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
         let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -83,7 +83,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
         
         do{
-            let results = try context.executeFetchRequest(fetchRequest)
+            let results = try context.fetch(fetchRequest)
             self.items = results as! [Item]
         } catch let err as NSError {
             print(err.debugDescription)
@@ -94,10 +94,10 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     //MARK: Button Actions
     
-    @IBAction func changeCategory(sender: UIButton) {
+    @IBAction func changeCategory(_ sender: UIButton) {
         
         
-        if(!self.calculatorView.hidden){
+        if(!self.calculatorView.isHidden){
             return;
         }
         
@@ -128,22 +128,22 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
 
         self.productsCV.reloadData()
         
-        self.calculatorView.hidden = true
-        self.productsCV.hidden = false
+        self.calculatorView.isHidden = true
+        self.productsCV.isHidden = false
         
     }
     
     
-    @IBAction func calculatorBtnPressed(sender: AnyObject) {
+    @IBAction func calculatorBtnPressed(_ sender: AnyObject) {
         
-        if calculatorView.hidden {
-            productsCV.hidden = true
-            calculatorView.hidden = false
+        if calculatorView.isHidden {
+            productsCV.isHidden = true
+            calculatorView.isHidden = false
             
         }
         else {
-            calculatorView.hidden = true
-            productsCV.hidden = false
+            calculatorView.isHidden = true
+            productsCV.isHidden = false
         }
         
     }
@@ -153,16 +153,16 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
 
     //MARK: CollectionView
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductCell", forIndexPath: indexPath) as? ItemCell_CV {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as? ItemCell_CV {
             
             cell.configureCell( items[indexPath.row] )
 
@@ -174,19 +174,19 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(117, 117)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 117, height: 117)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let item:Item!
         item = items[indexPath.row]
 
-        if let index = addedItems.indexOf({$0.id == (item.objectID.URIRepresentation().absoluteString) }){
+        if let index = addedItems.index(where: {$0.id == (item.objectID.uriRepresentation().absoluteString) }){
             addedItems[index].quantity += 1
         } else {
-            addedItems.append(AddedItem(objectId: (item.objectID.URIRepresentation().absoluteString) , name: item.name!, price: Double(item.price!), image: item.getItemImg()  ))
+            addedItems.append(AddedItem(objectId: (item.objectID.uriRepresentation().absoluteString) , name: item.name!, price: Double(item.price!), image: item.getItemImg()  ))
         }
         
         refreshTableView()
