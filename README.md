@@ -24,7 +24,7 @@ For the app to work:
 
 * You have to go to the backend and configure the url that has the json file with the products and the urls to get the images
 
-1 - Go to Backend (click in the bottom right button in the main screen) 
+Go to Backend (click in the bottom right button in the main screen) 
 
 * Click "Configurar localização dos dados"
 * In the field dados add the .json location url and click "Salvar"
@@ -34,7 +34,7 @@ For the app to work:
 
 ### .json products file format ###
 You just have to add the types and then the items like below:
-
+```
 {
   "types": [
     "Cafe",
@@ -52,4 +52,4 @@ You just have to add the types and then the items like below:
     }
   ]
 }
-
+```
